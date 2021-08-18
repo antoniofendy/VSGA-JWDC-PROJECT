@@ -1,0 +1,13 @@
+.bg-image {
+  background-image: url("../images/logos.jpeg ");
+  background-size: cover;
+  background-position: center;
+}
+
+form .form-control {
+  border-radius: 5px !important;
+}
+
+form button {
+  border-radius: 5px !important;
+}

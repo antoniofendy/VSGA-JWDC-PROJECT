@@ -4,7 +4,7 @@ error_reporting(0);
 
 class App {
 
-	protected $controller = 'Home';
+	protected $controller = 'Dashboard';
 	protected $method = 'index';
 	protected $params = [];
 

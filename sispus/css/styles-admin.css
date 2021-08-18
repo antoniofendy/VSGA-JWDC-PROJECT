@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+.accent-font {
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 1px;
+}
+
+.accent-font-t {
+  font-family: "Montserrat", sans-serif;
+}
+
+.scroll-to-top.rounded {
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
