@@ -8,10 +8,10 @@ if (!isset($_SESSION)) {
         $elapsed = time() - $_SESSION['start'];
         if ($elapsed >= $timeout) {
             session_destroy();
-            echo '<script type="text/javascript">alert("Session expired."); window.location = "' . BASE_URL . '/Login"</script>';
+            echo '<script type="text/javascript">alert("Session expired."); window.location = "' . BASE_URL . '/Login/index"</script>';
         }
     }
     else{
-        header('location:' . BASE_URL . '/Login');
+        header('location:' . BASE_URL . '/Login/index');
     }
 }

@@ -18,9 +18,5 @@ class LoginModel {
 		return $this->db->single();
 
 	}
-
-	public function example() {
-		echo "hello world";
-	}
 	
 }

@@ -2,6 +2,9 @@
 
 error_reporting(0);
 
+if (!isset($_SESSION)) {
+    session_start();
+}
 
 class App {
 
@@ -10,8 +13,9 @@ class App {
 	protected $params = [];
 
 	public function __construct() {
-		$url = $this->parseURL();
 		
+		$url = $this->parseURL();
+	
 		// Controller
 		if(file_exists('../app/controllers/' . $url[0] . '.php')) {
 			$this->controller = $url[0];
@@ -37,7 +41,7 @@ class App {
 
 		// Run Controller and Method 
 		call_user_func_array([$this->controller, $this->method], $this->params);
-
+		
 	}
 
 	public function parseURL() {

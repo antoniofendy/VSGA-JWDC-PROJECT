@@ -15,7 +15,7 @@
 
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="mr-3 d-none d-lg-inline text-dark small accent-font-t"><?= $_SESSION['username'] ?></span>
-            <img src="images/defaultuser.jpg" class="img-profile rounded-circle" alt="" style="object-fit: cover;">
+            <img src="<?= BASE_URL ?>/images/defaultuser.jpg" class="img-profile rounded-circle" alt="" style="object-fit: cover;">
         </a>
         <!-- Dropdown - User Information -->
         <div class="rounded-0 dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

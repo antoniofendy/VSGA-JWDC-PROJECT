@@ -5,6 +5,12 @@ if (!isset($_SESSION)) {
 }
 
 class Login extends Controller {
+
+	public function index() {
+		$this->view('template/login-header');
+		$this->view('login/index');
+		$this->view('template/login-footer');
+	}
 	
 	public function login_handler() { 
 
