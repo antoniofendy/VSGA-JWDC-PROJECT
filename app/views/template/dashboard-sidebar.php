@@ -43,7 +43,7 @@
         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Master Data:</h6>
-                <a class="collapse-item" href="<?= BASE_URL ?>/Member/index"> Members</a>
+                <a class="collapse-item" href="<?= BASE_URL ?>/member/index"> Members</a>
                 <a class="collapse-item" href="<?= BASE_URL ?>"> Book</a>
             </div>
         </div>

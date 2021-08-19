@@ -56,13 +56,22 @@
                                         foreach ($data['members'] as $key => $member) {
 
                                     ?><tr>
-                                            <td><?= $member['id'] ?></td>
-                                            <td><?= $member['name'] ?></td>
-                                            <td><?= $member['sex'] ?></td>
-                                            <td><?= $member['picture'] ?></td>
-                                            <td class="text-center">
-                                                <a href="<?= BASE_URL ?>/Member/edit/<?= $member['id'] ?>" class="btn btn-small"><i class="fas fa-pen"></i></a>
-                                                <a onclick="deleteConfirm('<?= BASE_URL ?>/Member/delete/<?= $member['id'] ?>')" href="#" class="btn btn-small text-danger"><i class="fas fa-trash"></i></a>
+                                            <td class="align-middle"><?= $member['id'] ?></td>
+                                            <td class="align-middle"><?= $member['name'] ?></td>
+                                            <td class="align-middle"><?= $member['sex'] ?></td>
+                                            <td class="text-center align-middle">
+                                                <?php
+                                                    if(empty($member['picture'])) {
+                                                        echo "<img src='" . BASE_URL . "/images/defaultuser.jpg' alt='' width='50px' heigth='50px' class='rounded-circle'>";
+                                                    }
+                                                    else {
+                                                        echo "<img src='" . BASE_URL . "/images/members/ " . $member['picture'] . "' alt='' width='50px' heigth='50px' class='rounded-circle'>";
+                                                    }
+                                                ?>
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                <a href="<?= BASE_URL ?>/member/edit/<?= $member['id'] ?>" class="btn btn-small"><i class="fas fa-pen"></i></a>
+                                                <a onclick="deleteConfirm('<?= BASE_URL ?>/member/delete/<?= $member['id'] ?>')" href="#" class="btn btn-small text-danger"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -120,7 +129,7 @@
         "dom": "<'row'<'col-12 col-md-2 p-0 mb-2 mb-md-0 text-md-left text-center'<'#newBtn.btn btn-sm btn-primary shadow-sm p-0'>><'col-12 col-md-10 text-right d-inline-block'f>>t<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>"
         });
 
-        $('<a href="<?= BASE_URL ?>/Member/create" class="btn btn-sm btn-primary shadow-sm accent-font-t"><i id="newBtnText" class="fas fa-plus fa-sm text-white-50"></i> New</a>').appendTo('#newBtn');
+        $('<a href="<?= BASE_URL ?>/member/create" class="btn btn-sm btn-primary shadow-sm accent-font-t"><i id="newBtnText" class="fas fa-plus fa-sm text-white-50"></i> New</a>').appendTo('#newBtn');
     });
 
     function deleteConfirm(url) {
