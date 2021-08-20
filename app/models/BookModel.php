@@ -58,20 +58,40 @@ class BookModel {
 
     public function update($data) {
 
-		$updated_at = date('Y-m-d H:i:s');
+		try {
+			$updated_at = date('Y-m-d H:i:s');
 
-		if($data['cover']) {
-			$this->db->query("UPDATE " . $this->table . " SET ");
-			$this->db->bind('updated_at', $updated_at);
+			if($data['cover']) {
+				$this->db->query("UPDATE " . $this->table . " SET isbn = :isbn, title = :title, category = :category, writer = :writer, publisher = :publisher, status = :status, cover = :cover, year = :year, updated_at = :updated_at WHERE isbn = :isbn");
+				$this->db->bind('isbn', $data['isbn']);
+				$this->db->bind('title', $data['title']);
+				$this->db->bind('category', $data['category']);
+				$this->db->bind('writer', $data['writer']);
+				$this->db->bind('publisher', $data['publisher']);
+				$this->db->bind('status', $data['status']);
+				$this->db->bind('cover', $data['cover']);
+				$this->db->bind('year', $data['year']);
+				$this->db->bind('updated_at', $updated_at);
+			}
+			else {
+				$this->db->query("UPDATE " . $this->table . " SET isbn = :isbn, title = :title, category = :category, writer = :writer, publisher = :publisher, status = :status, year = :year, updated_at = :updated_at WHERE isbn = :isbn");
+				$this->db->bind('isbn', $data['isbn']);
+				$this->db->bind('title', $data['title']);
+				$this->db->bind('category', $data['category']);
+				$this->db->bind('writer', $data['writer']);
+				$this->db->bind('publisher', $data['publisher']);
+				$this->db->bind('status', $data['status']);
+				$this->db->bind('year', $data['year']);
+				$this->db->bind('updated_at', $updated_at);
+			}
+
+			$this->db->execute();
+
+			return $this->db->rowCount();
 		}
-		else {
-			$this->db->query("UPDATE " . $this->table . " SET ");
-			$this->db->bind('updated_at', $updated_at);
+		catch(Exception $e) {
+			return false;
 		}
-
-		$this->db->execute();
-
-		return $this->db->rowCount();
 
     }
 

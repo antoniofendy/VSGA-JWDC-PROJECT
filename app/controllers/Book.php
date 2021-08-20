@@ -134,13 +134,114 @@ class Book extends Controller {
 
     public function update() {
 
-        
+        $required = array('isbn', 'title', 'status', 'category', 'writer', 'publisher', 'year');
+
+		$error = false;
+
+		foreach ($required as $field) {
+			if (empty($_POST[$field])) $error = true;
+		}
+
+		if ($error) {
+			Flasher::setFlash('Please fill all of the input form', 'danger');
+			header('location: ' . BASE_URL . '/book/edit/' . $_POST['isbn']);
+			die();
+		}
+
+        // Check Book's Cover
+        $cover_uploaded = is_uploaded_file($_FILES['cover']['tmp_name']);
+        $cover_new = "";
+        $cover_temp = "";
+
+        // Image validation
+        $img_dir = "../sispus/images/books/";
+        $acceptable = array(
+            "png",
+            "jpg",
+            "jpeg"
+        );
+        $maxsize = 2097000;
+        $cover_min_dimension = array(250, 250);
+
+        $result = false;
+
+        // If cover Uploaded
+        if($cover_uploaded) {
+            // Get Image Dimension
+            $cover_info = @getimagesize($_FILES["cover"]["tmp_name"]);
+            $cover_width = $cover_info[0];
+            $cover_height = $cover_info[1];
+            $cover_ext = pathinfo($_FILES["cover"]["name"], PATHINFO_EXTENSION);
+
+            // Check cover exists
+            if (!file_exists($_FILES["cover"]["tmp_name"])) {
+                Flasher::setFlash("book's cover is not available", 'danger');
+                header('location: ' . BASE_URL . '/book/edit/' . $_POST['isbn']);
+                die();
+            }
+            // Check cover extension
+            else if (!in_array($cover_ext, $acceptable)) {
+                Flasher::setFlash("book's cover extension must be png/jpg/jpeg", 'danger');
+                header('location: ' . BASE_URL . '/book/edit/' . $_POST['isbn']);
+                die();
+            }
+            // Check cover size
+            else if (($_FILES["cover"]["size"] > $maxsize)) {
+                Flasher::setFlash("book's cover maximum size must be 2 MB", 'danger');
+                header('location: ' . BASE_URL . '/book/edit/' . $_POST['isbn']);
+                die();
+            }
+            // Check cover dimension
+            else if ($cover_width < $cover_min_dimension[0] || $cover_height < $cover_min_dimension[1]) {
+                Flasher::setFlash("book's cover dimension must be 250x250 px", 'danger');
+                header('location: ' . BASE_URL . '/book/edit/' . $_POST['isbn']);
+                die();
+            } else {
+                $cover_new = $_POST['isbn'] . "_cover." . $cover_ext;
+                $cover_temp = $_POST['isbn'] . "_cover_temp." . $cover_ext;
+
+                // Check If book Has Old Image
+                $old_data = $this->model('bookModel')->find($_POST['isbn']);
+                
+                if($old_data['cover']) {
+                    unlink($img_dir . $old_data['cover']);
+                }
+
+                move_uploaded_file($_FILES["cover"]["tmp_name"], $img_dir . $cover_temp);
+                rename($img_dir . $cover_temp, $img_dir . $cover_new);
+            }
+
+            $_POST['cover'] = $cover_new;
+            $result = $this->model('BookModel')->update($_POST);
+        }
+        // If cover Not Uploaded
+        else {
+            $result = $this->model('BookModel')->update($_POST);
+        }
+
+        if($result) {
+            Flasher::setFlash("Successfuly update book", 'success');
+            header('location: ' . BASE_URL . '/book');
+        }
+        else {
+            Flasher::setFlash("Error occured when try update book", 'danger');
+            header('location: ' . BASE_URL . '/book/edit' . $_POST['isbn']);
+        }
 
     }
 
-    public function delete($id) {
+    public function delete($isbn) {
 
-        
+        $result = $this->model('BookModel')->delete($isbn);
+        if($result) {
+            
+            Flasher::setFlash("Successfuly delete book", 'success');
+            header('location: ' . BASE_URL . '/book');
+        }
+        else {
+            Flasher::setFlash("Error occured when try delete book", 'danger');
+            header('location: ' . BASE_URL . '/book');
+        }
 
     }
 
