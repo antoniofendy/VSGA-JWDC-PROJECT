@@ -33,7 +33,7 @@
                         <a href="<?= BASE_URL ?>/member" class="btn btn-sm btn-outline-primary shadow-sm accent-font-t mr-2">
                             <span class="fa fa-arrow-left"></span> Back
                         </a>
-                        <h3 class="accent-font-t d-inline h5 align-middle"><b>New Member</b></h3>
+                        <h3 class="accent-font-t d-inline h5 align-middle"><b>Edit Member</b></h3>
                         <hr>
                         <form action="<?= BASE_URL ?>/member/update" method="post" enctype="multipart/form-data">
                             <div class="form-row my-2">
@@ -94,7 +94,7 @@
                             <p class="m-0">All input fields must be filled.</p>
                             <p class="mb-3">*Picture maximum size is 2 MB.</p>
 
-                            <input type="submit" value="Save" class="btn btn-outline-success shadow-sm accent-font-t mr-2" name="submit" id>
+                            <input type="submit" value="Update" class="btn btn-outline-success shadow-sm accent-font-t mr-2" name="submit" id>
                         </form>
                     </div>
                 </div>

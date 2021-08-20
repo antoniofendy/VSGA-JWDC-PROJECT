@@ -22,7 +22,7 @@ class Member extends Controller {
 
     public function create() {
 
-        $data['title'] = 'Members | Create';
+        $data['title'] = 'Book | Create';
 
         $data['last_id'] = $this->getLastId();
 
@@ -125,7 +125,7 @@ class Member extends Controller {
 
     public function edit($id) {
         
-        $data['title'] = 'Members | Edit';
+        $data['title'] = 'Member | Edit';
 
         $data['member'] = $this->model('MemberModel')->find($id);
 

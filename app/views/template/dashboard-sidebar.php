@@ -44,7 +44,8 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Master Data:</h6>
                 <a class="collapse-item" href="<?= BASE_URL ?>/member"> Members</a>
-                <a class="collapse-item" href="<?= BASE_URL ?>/book"> Book</a>
+                <a class="collapse-item" href="<?= BASE_URL ?>/book"> Books</a>
+                <a class="collapse-item" href="<?= BASE_URL ?>/user"> Users</a>
             </div>
         </div>
     </li>

@@ -25,20 +25,34 @@ class BookModel {
 		$this->db->bind('isbn', $isbn);
 		$this->db->execute();
 		return $this->db->single();
-        
+
 	}
 
     public function save($data) {
 
-		$created_at = $updated_at = date('Y-m-d H:i:s');
+		try {   
 
-		$this->db->query("INSERT INTO " . $this->table . " VALUES (, :created_at, :updated_at)");
+            $created_at = $updated_at = date('Y-m-d H:i:s');
 
-		$this->db->bind('created_at', $created_at);
-		$this->db->bind('updated_at', $updated_at);
-		$this->db->execute();
+            $this->db->query("INSERT INTO " . $this->table . " VALUES (:isbn, :title, :category, :writer, :publisher, :status, :cover, :year, :created_at, :updated_at)");
+            $this->db->bind('isbn', $data['isbn']);
+            $this->db->bind('title', $data['title']);
+            $this->db->bind('category', $data['category']);
+            $this->db->bind('writer', $data['writer']);
+            $this->db->bind('publisher', $data['publisher']);
+            $this->db->bind('status', $data['status']);
+            $this->db->bind('cover', $data['cover']);
+            $this->db->bind('year', $data['year']);
+            $this->db->bind('created_at', $created_at);
+            $this->db->bind('updated_at', $updated_at);
+            $this->db->execute();
 
-		return $this->db->rowCount();
+            return $this->db->rowCount();
+
+        }
+        catch(Exception $e) {
+            return false;
+        }
 
     }
 
@@ -46,7 +60,7 @@ class BookModel {
 
 		$updated_at = date('Y-m-d H:i:s');
 
-		if($data['picture']) {
+		if($data['cover']) {
 			$this->db->query("UPDATE " . $this->table . " SET ");
 			$this->db->bind('updated_at', $updated_at);
 		}

@@ -34,21 +34,21 @@
                             <table class="table table-bordered" id="bookTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Sex</th>
+                                        <th>ISBN</th>
+                                        <th>Title</th>
+                                        <th>Category</th>
+                                        <th>Writer</th>
                                         <th>Status</th>
-                                        <th>Cover</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Sex</th>
+                                        <th>ISBN</th>
+                                        <th>Title</th>
+                                        <th>Category</th>
+                                        <th>Writer</th>
                                         <th>Status</th>
-                                        <th>Cover</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </tfoot>
@@ -58,24 +58,23 @@
                                         foreach ($data['book'] as $key => $book) {
 
                                     ?><tr>
-                                            <td class="align-middle"><?= $book['id'] ?></td>
-                                            <td class="align-middle"><?= $book['name'] ?></td>
-                                            <td class="align-middle" style="text-transform: capitalize;"><?= $book['sex'] ?></td>
-                                            <td class="align-middle"><?= $book['status'] == 'not_borrowing' ? 'Not Borrowing' : 'Is Borrowing' ?></td>
-                                            <td class="text-center align-middle">
+                                            <td class="align-middle" width="10%"><?= $book['isbn'] ?></td>
+                                            <td class="align-middle" width="30%"><?= $book['title'] ?></td>
+                                            <td class="align-middle"><?= $book['category'] ?></td>
+                                            <td class="align-middle" width="15%">
                                                 <?php
-                                                    if(empty($book['cover'])) {
-                                                        echo "<img src='" . BASE_URL . "/images/defaultuser.jpg' alt='' width='50px' heigth='50px' style='border-width: 2px !important;' class='border border-primary rounded-circle'>";
-                                                    }
-                                                    else {
-                                                        echo "<img src='" . BASE_URL . "/images/books/" . $book['cover'] . "' alt='' width='50px' heigth='50px' style='border-width: 2px !important;' class='border border-primary rounded-circle'>";
+                                                    $writers = explode(",", $book['writer']);
+                                                    foreach($writers as $writer) {
+                                                        echo "
+                                                            <span class='badge badge-info'>$writer</span>
+                                                        ";
                                                     }
                                                 ?>
                                             </td>
-                                            <td class="text-center align-middle">
-                                            <a href="<?= BASE_URL ?>/book/print/<?= $book['id'] ?>" class="btn btn-small"><i class="fas fa-print"></i></a>
-                                                <a href="<?= BASE_URL ?>/book/edit/<?= $book['id'] ?>" class="btn btn-small"><i class="fas fa-pen"></i></a>
-                                                <a onclick="deleteConfirm('<?= BASE_URL ?>/book/delete/<?= $book['id'] ?>')" href="#" class="btn btn-small text-danger"><i class="fas fa-trash"></i></a>
+                                            <td class="text-center align-middle"><?= $book['status'] ?></td>
+                                            <td class="text-center align-middle" width="15%">
+                                                <a href="<?= BASE_URL ?>/book/edit/<?= $book['isbn'] ?>" class="btn btn-small"><i class="fas fa-pen"></i></a>
+                                                <a onclick="deleteConfirm('<?= BASE_URL ?>/book/delete/<?= $book['isbn'] ?>')" href="#" class="btn btn-small text-danger"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -111,21 +110,21 @@
         $('#bookTable').DataTable({
         "order": [0, 'asc'],
         // "columns": [{
-        //     "width": "30px"
+        //         "width": "30px"
         //     },
         //     {
-        //     "width": "300px",
-        //     "orderable": true
+        //         "width": "50px",
+        //         "orderable": true
         //     },
         //     {
-        //     "width": "150px",
-        //     "orderable": true
+        //         "width": "50px",
+        //         "orderable": true
         //     },
         //     {
-        //     "searchable": false,
-        //     "width": "60px",
-        //     "orderable": true
-        //     },
+        //         "searchable": true,
+        //         "width": "60px",
+        //         "orderable": true
+        //     }
         // ],
         language: {
             emptyTable: "Tidak ada data yang dapat ditampilkan"
