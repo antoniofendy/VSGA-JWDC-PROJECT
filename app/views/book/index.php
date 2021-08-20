@@ -20,7 +20,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4 row">
-            <h1 class="h3 mb-0 text-gray-800 accent-font col-6"><b>Member Data</b></h1>
+            <h1 class="h3 mb-0 text-gray-800 accent-font col-6"><b>Book Data</b></h1>
         </div>
 
         <?php Flasher::flash(); ?>
@@ -31,14 +31,14 @@
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="memberTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="bookTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Sex</th>
                                         <th>Status</th>
-                                        <th>Picture</th>
+                                        <th>Cover</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -48,34 +48,34 @@
                                         <th>Name</th>
                                         <th>Sex</th>
                                         <th>Status</th>
-                                        <th>Picture</th>
+                                        <th>Cover</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
                                     <?php
 
-                                        foreach ($data['members'] as $key => $member) {
+                                        foreach ($data['book'] as $key => $book) {
 
                                     ?><tr>
-                                            <td class="align-middle"><?= $member['id'] ?></td>
-                                            <td class="align-middle"><?= $member['name'] ?></td>
-                                            <td class="align-middle" style="text-transform: capitalize;"><?= $member['sex'] ?></td>
-                                            <td class="align-middle"><?= $member['status'] == 'not_borrowing' ? 'Not Borrowing' : 'Is Borrowing' ?></td>
+                                            <td class="align-middle"><?= $book['id'] ?></td>
+                                            <td class="align-middle"><?= $book['name'] ?></td>
+                                            <td class="align-middle" style="text-transform: capitalize;"><?= $book['sex'] ?></td>
+                                            <td class="align-middle"><?= $book['status'] == 'not_borrowing' ? 'Not Borrowing' : 'Is Borrowing' ?></td>
                                             <td class="text-center align-middle">
                                                 <?php
-                                                    if(empty($member['picture'])) {
+                                                    if(empty($book['cover'])) {
                                                         echo "<img src='" . BASE_URL . "/images/defaultuser.jpg' alt='' width='50px' heigth='50px' style='border-width: 2px !important;' class='border border-primary rounded-circle'>";
                                                     }
                                                     else {
-                                                        echo "<img src='" . BASE_URL . "/images/members/" . $member['picture'] . "' alt='' width='50px' heigth='50px' style='border-width: 2px !important;' class='border border-primary rounded-circle'>";
+                                                        echo "<img src='" . BASE_URL . "/images/books/" . $book['cover'] . "' alt='' width='50px' heigth='50px' style='border-width: 2px !important;' class='border border-primary rounded-circle'>";
                                                     }
                                                 ?>
                                             </td>
                                             <td class="text-center align-middle">
-                                            <a href="<?= BASE_URL ?>/member/print/<?= $member['id'] ?>" class="btn btn-small"><i class="fas fa-print"></i></a>
-                                                <a href="<?= BASE_URL ?>/member/edit/<?= $member['id'] ?>" class="btn btn-small"><i class="fas fa-pen"></i></a>
-                                                <a onclick="deleteConfirm('<?= BASE_URL ?>/member/delete/<?= $member['id'] ?>')" href="#" class="btn btn-small text-danger"><i class="fas fa-trash"></i></a>
+                                            <a href="<?= BASE_URL ?>/book/print/<?= $book['id'] ?>" class="btn btn-small"><i class="fas fa-print"></i></a>
+                                                <a href="<?= BASE_URL ?>/book/edit/<?= $book['id'] ?>" class="btn btn-small"><i class="fas fa-pen"></i></a>
+                                                <a onclick="deleteConfirm('<?= BASE_URL ?>/book/delete/<?= $book['id'] ?>')" href="#" class="btn btn-small text-danger"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -108,7 +108,7 @@
     $(document).ready(function() {
 
         // Filling dataTable
-        $('#memberTable').DataTable({
+        $('#bookTable').DataTable({
         "order": [0, 'asc'],
         // "columns": [{
         //     "width": "30px"
@@ -133,7 +133,7 @@
         "dom": "<'row'<'col-12 col-md-2 p-0 mb-2 mb-md-0 text-md-left text-center'<'#newBtn.btn btn-sm btn-primary shadow-sm p-0'>><'col-12 col-md-10 text-right d-inline-block'f>>t<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>"
         });
 
-        $('<a href="<?= BASE_URL ?>/member/create" class="btn btn-sm btn-primary shadow-sm accent-font-t"><i id="newBtnText" class="fas fa-plus fa-sm text-white-50"></i> New</a>').appendTo('#newBtn');
+        $('<a href="<?= BASE_URL ?>/book/create" class="btn btn-sm btn-primary shadow-sm accent-font-t"><i id="newBtnText" class="fas fa-plus fa-sm text-white-50"></i> New</a>').appendTo('#newBtn');
     });
 
     function deleteConfirm(url) {

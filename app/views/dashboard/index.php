@@ -27,7 +27,7 @@
 
         <!-- Content Row -->
         <div class="row">
-            <div class="col-lg-10 col-12">
+            <div class="col-12">
                 <div class="card shadow mb-4">
                     <div class="card-body col-12 col-md-10 col-xl-8">
                         <h3 class="h5 accent-font-t font-weight-bold">Welcome to Dashboard</h3>

@@ -35,10 +35,18 @@
                         </a>
                         <h3 class="accent-font-t d-inline h5 align-middle"><b>New Member</b></h3>
                         <hr>
-                        <form action="<?= BASE_URL ?>/member/store" method="post" enctype="multipart/form-data">
-                            <div div class="form-row my-2">
+                        <form action="<?= BASE_URL ?>/member/update" method="post" enctype="multipart/form-data">
+                            <div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="picture">Member's Picture* </label>
+                                    <?php
+                                        if(empty($data['picture'])) {
+                                            echo "<img src='" . BASE_URL . "/images/defaultuser.jpg' alt='' width='100px' heigth='100px' style='border-width: 2px !important;' class='border border-primary rounded-circle d-block mb-3'>";
+                                        }
+                                        else {
+                                            echo "<img src='" . BASE_URL . "/images/members/" . $data['picture'] . "' alt='' width='100px' heigth='100px' style='border-width: 2px !important;' class='border border-primary rounded-circle d-block mb-3'>";
+                                        }
+                                    ?>
                                     <input type="file" class="form-control-file" accept="image/jpg, image/png, image/jpeg" name="picture" id="cover">
                                     <small class="form-text mt-1 mb-0 text-muted">Minimum Dimension 250x250 px.</small>
                                 </div>
@@ -46,23 +54,23 @@
                             <div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="id">ID</label>
-                                    <input type="text" class="form-control" name="id" id="id" value="<?= $data['last_id'] ?>" readonly>
+                                    <input type="text" class="form-control" name="id" id="id" value="<?= $data['id'] ?>" readonly>
                                 </div>
                             </div>
                             <div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="name">Name</label>
-                                    <input type="text" class="form-control" name="name" id="name" value="">
+                                    <input type="text" class="form-control" name="name" id="name" value="<?= $data['name']; ?>">
                                 </div>
                             </div>
                             <div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="sex">Sex</label>
                                     <select class="form-control" id="sex" name="sex">
-                                        <option value="" disabled selected>Select Sex</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
+                                        <option value="" disabled>Select Sex</option>
+                                        <option value="male" <?= $data['sex'] == 'male' ? "selected" : '' ?>>Male</option>
+                                        <option value="female" <?= $data['sex'] == 'female' ? "selected" : '' ?>>Female</option>
+                                        <option value="other" <?= $data['sex'] == 'other' ? "selected" : '' ?>>Other</option>
                                     </select>
                                 </div>
                             </div>
@@ -70,16 +78,16 @@
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="status">Status</label>
                                     <select class="form-control" id="status" name="status">
-                                        <option value="" disabled selected>Select Status</option>
-                                        <option value="is_borrowing">Is Borrowing</option>
-                                        <option value="not_borrowing">Not Borrowing</option>
+                                        <option value="" disabled>Select Status</option>
+                                        <option value="is_borrowing" <?= $data['status'] == 'is_borrowing' ? "selected" : '' ?>>Is Borrowing</option>
+                                        <option value="not_borrowing" <?= $data['status'] == 'not_borrowing' ? "selected" : '' ?>>Not Borrowing</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="address">Address</label>
-                                    <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+                                    <textarea class="form-control" id="address" name="address" rows="3"><?= $data['address'] ?></textarea>
                                 </div>
                             </div>
 

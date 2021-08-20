@@ -6,6 +6,8 @@ if (!isset($_SESSION)) {
 	session_start();
 }
 
+date_default_timezone_set('Asia/Jakarta');
+
 class Controller {
 
 	public function __construct() {
