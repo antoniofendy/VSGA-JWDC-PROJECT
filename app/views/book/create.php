@@ -35,24 +35,27 @@
                         </a>
                         <h3 class="accent-font-t d-inline h5 align-middle"><b>New Book</b></h3>
                         <hr>
-                        <form action="<?= BASE_URL ?>/book/store" method="post" enctype="multipart/form-data">
+                        <form action="<?= BASE_URL ?>/book/store" method="post" enctype="multipart/form-data" id="form-body" onsubmit="return validasiForm()">
                             <div div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="cover">Book's Cover* </label>
                                     <input type="file" class="form-control-file" accept="image/jpg, image/png, image/jpeg" name="cover" id="cover">
                                     <small class="form-text mt-1 mb-0 text-muted">Minimum Dimension 250x250 px.</small>
+                                    <small id="cover-error" style="color: red;"></small>
                                 </div>
                             </div>
                             <div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="isbn">ISBN</label>
                                     <input type="text" class="form-control" name="isbn" id="isbn" value="">
+                                    <small id="isbn-error" style="color: red;"></small>
                                 </div>
                             </div>
                             <div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="title">Title</label>
                                     <input type="text" class="form-control" name="title" id="title" value="">
+                                    <small id="title-error" style="color: red;"></small>
                                 </div>
                             </div>
                             <div class="form-row my-2">
@@ -63,30 +66,35 @@
                                         <option value="available">Available</option>
                                         <option value="unavailable">Unavailable</option>
                                     </select>
+                                    <small id="status-error" style="color: red;"></small>
                                 </div>
                             </div>
                             <div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="category">Category</label>
                                     <input type="text" class="form-control" name="category" id="category" value="">
+                                    <small id="category-error" style="color: red;"></small>
                                 </div>
                             </div>
                             <div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="writer">Writer</label>
                                     <input type="text" class="form-control" name="writer" id="writer" value="">
+                                    <small id="writer-error" style="color: red;"></small>
                                 </div>
                             </div>
                             <div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="publisher">Publisher</label>
                                     <input type="text" class="form-control" name="publisher" id="publisher" value="">
+                                    <small id="publisher-error" style="color: red;"></small>
                                 </div>
                             </div>
                             <div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="year">Year</label>
                                     <input type="number" class="form-control" name="year" id="year" value="">
+                                    <small id="year-error" style="color: red;"></small>
                                 </div>
                             </div>
 
@@ -111,3 +119,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <!-- Core plugin JavaScript-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+<!-- Validations -->
+<script src="<?= BASE_URL ?>/js/formValidation/bookInputValidation.js"></script>
+

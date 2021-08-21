@@ -73,7 +73,7 @@
                                                 ?>
                                             </td>
                                             <td class="text-center align-middle">
-                                            <a href="<?= BASE_URL ?>/member/print/<?= $member['id'] ?>" class="btn btn-small"><i class="fas fa-print"></i></a>
+                                            <a href="<?= BASE_URL ?>/member/printcard/<?= $member['id'] ?>" class="btn btn-small"><i class="fas fa-print"></i></a>
                                                 <a href="<?= BASE_URL ?>/member/edit/<?= $member['id'] ?>" class="btn btn-small"><i class="fas fa-pen"></i></a>
                                                 <a onclick="deleteConfirm('<?= BASE_URL ?>/member/delete/<?= $member['id'] ?>')" href="#" class="btn btn-small text-danger"><i class="fas fa-trash"></i></a>
                                             </td>
@@ -130,10 +130,11 @@
         language: {
             emptyTable: "Tidak ada data yang dapat ditampilkan"
         },
-        "dom": "<'row'<'col-12 col-md-2 p-0 mb-2 mb-md-0 text-md-left text-center'<'#newBtn.btn btn-sm btn-primary shadow-sm p-0'>><'col-12 col-md-10 text-right d-inline-block'f>>t<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>"
+        "dom": "<'row'<'col-12 col-md-2 p-0 mb-2 mb-md-0 text-md-left text-center'<'#newBtn.btn btn-sm btn-primary shadow-sm p-0'><'#printBtn.btn ml-3 btn-sm btn-info shadow-sm p-0'>><'col-12 col-md-10 text-right d-inline-block'f>>t<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>"
         });
 
         $('<a href="<?= BASE_URL ?>/member/create" class="btn btn-sm btn-primary shadow-sm accent-font-t"><i id="newBtnText" class="fas fa-plus fa-sm text-white-50"></i> New</a>').appendTo('#newBtn');
+        $('<a href="<?= BASE_URL ?>/member/print" class="btn btn-sm btn-info shadow-sm accent-font-t"><i id="newBtnText" class="fas fa-print fa-sm text-white-50"></i> Print</a>').appendTo('#printBtn');
     });
 
     function deleteConfirm(url) {

@@ -35,7 +35,7 @@
                         </a>
                         <h3 class="accent-font-t d-inline h5 align-middle"><b>Edit User</b></h3>
                         <hr>
-                        <form action="<?= BASE_URL ?>/user/update" method="post" enctype="multipart/form-data">
+                        <form action="<?= BASE_URL ?>/user/update" method="post" enctype="multipart/form-data" onsubmit="return validasiForm()">
                             <input type="hidden" name="password" value="<?= $data['password']; ?>">
                             <div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">
@@ -59,6 +59,7 @@
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="username">Username</label>
                                     <input type="text" class="form-control" name="username" id="username" value="<?= $data['username']; ?>">
+                                    <small id="username-error" style="color: red;"></small>
                                 </div>
                             </div>
                             <div class="form-row my-2">
@@ -71,6 +72,11 @@
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="retype_password">Retype Password</label>
                                     <input type="password" class="form-control" name="retype_password" id="retype_password">
+                                </div>
+                            </div>
+                            <div class="form-row my-2">
+                                <div class="col-12 col-lg-6 col-xl-8">
+                                    <small id="password-error" style="color: red;"></small>
                                 </div>
                             </div>
 
@@ -94,3 +100,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <!-- Core plugin JavaScript-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+<!-- Validations -->
+<script src="<?= BASE_URL ?>/js/formValidation/userEditValidation.js"></script>

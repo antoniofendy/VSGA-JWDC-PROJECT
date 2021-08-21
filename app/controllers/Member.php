@@ -251,6 +251,16 @@ class Member extends Controller {
 
     }
 
+    public function print() {
+        $result = $this->model('MemberModel')->get();
+        $this->view('member/print', $result);
+    }
+
+    public function printcard($id) {
+        $result = $this->model('MemberModel')->find($id);
+        $this->view('member/printcard', $result);
+    }
+
     private function getLastId() {
 
         $result = $this->model('MemberModel')->get();
