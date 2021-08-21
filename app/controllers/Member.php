@@ -22,7 +22,7 @@ class Member extends Controller {
 
     public function create() {
 
-        $data['title'] = 'Book | Create';
+        $data['title'] = 'Member | Create';
 
         $data['last_id'] = $this->getLastId();
 
@@ -35,7 +35,7 @@ class Member extends Controller {
     public function store() {
         
         // Check all non-filetype input
-        $required = array('name', 'sex', 'address', 'status');
+        $required = array('id', 'name', 'sex', 'address', 'status');
 
 		$error = false;
 
@@ -111,8 +111,10 @@ class Member extends Controller {
 
         // If Member's Picture Successfully Uploaded, Add to DB
         $result = $this->model('MemberModel')->save($_POST);
+        $_POST['user_id'] = $this->getLastIdUser();
+        $result2 = $this->model('UserModel')->save($_POST);
 
-        if($result) {
+        if($result && $result2) {
             Flasher::setFlash("Successfuly add new member", 'success');
             header('location: ' . BASE_URL . '/member');
         }
@@ -259,11 +261,45 @@ class Member extends Controller {
         }
 
         sort($stored_id);
-        $last_id = end($stored_id);
-        $last_id = intval($last_id) + 1;
+        $last_id = 1;
+        foreach ($stored_id as $id) {
+            if($last_id == $id) {
+                $last_id++;
+            }
+            else {
+                break;
+            }
+        }
+
         $last_id = str_pad(strval($last_id), 5, "0", STR_PAD_LEFT);
 
         return "AG" . $last_id;
+
+    }
+
+    private function getLastIdUser() {
+
+        $result = $this->model('UserModel')->get();
+        $stored_id = [];
+
+        foreach ($result as $key => $user) {
+            array_push($stored_id, substr($user['id'], -5, 5));
+        }
+
+        sort($stored_id);
+        $last_id = 1;
+        foreach ($stored_id as $id) {
+            if($last_id == $id) {
+                $last_id++;
+            }
+            else {
+                break;
+            }
+        }
+
+        $last_id = str_pad(strval($last_id), 5, "0", STR_PAD_LEFT);
+
+        return "US" . $last_id;
 
     }
 
