@@ -30,12 +30,12 @@
             <div class="col-12">
                 <div class="card shadow mb-4">
                     <div class="card-body">
-                        <a href="<?= BASE_URL ?>/user" class="btn btn-sm btn-outline-primary shadow-sm accent-font-t mr-2">
+                        <a href="<?= BASE_URL ?>/User" class="btn btn-sm btn-outline-primary shadow-sm accent-font-t mr-2">
                             <span class="fa fa-arrow-left"></span> Back
                         </a>
                         <h3 class="accent-font-t d-inline h5 align-middle"><b>Edit User</b></h3>
                         <hr>
-                        <form action="<?= BASE_URL ?>/user/update" method="post" enctype="multipart/form-data" onsubmit="return validasiForm()">
+                        <form action="<?= BASE_URL ?>/User/update" method="post" enctype="multipart/form-data" onsubmit="return validasiForm()">
                             <input type="hidden" name="password" value="<?= $data['password']; ?>">
                             <div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">

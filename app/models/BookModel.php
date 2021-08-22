@@ -15,7 +15,9 @@ class BookModel {
 		
 		$this->db->query("SELECT * FROM " . $this->table);
 		$this->db->execute();
-		return $this->db->resultSet();
+		$result = $this->db->resultSet();
+		$this->db->close();
+		return $result;
 
 	}
 
@@ -24,7 +26,27 @@ class BookModel {
 		$this->db->query("SELECT * FROM " . $this->table . " WHERE isbn = :isbn");
 		$this->db->bind('isbn', $isbn);
 		$this->db->execute();
-		return $this->db->single();
+		$result = $this->db->single();
+		$this->db->close();
+		return $result;
+
+	}
+
+	public function search($keyword) {
+
+		$this->db->query("SELECT * FROM " . $this->table . " WHERE 
+			title LIKE :keyword OR
+			isbn LIKE :keyword OR
+			category LIKE :keyword OR
+			writer LIKE :keyword OR
+			publisher LIKE :keyword OR
+			year LIKE :keyword
+		");
+		$this->db->bind('keyword', "%$keyword%");
+		$this->db->execute();
+		$result = $this->db->resultSet();
+		$this->db->close();
+		return $result;
 
 	}
 
@@ -47,7 +69,10 @@ class BookModel {
             $this->db->bind('updated_at', $updated_at);
             $this->db->execute();
 
-            return $this->db->rowCount();
+            $result =  $this->db->rowCount();
+
+			$this->db->close();
+			return $result;
 
         }
         catch(Exception $e) {
@@ -87,7 +112,10 @@ class BookModel {
 
 			$this->db->execute();
 
-			return $this->db->rowCount();
+			$result = $this->db->rowCount();
+			
+			$this->db->close();
+			return $result;
 		}
 		catch(Exception $e) {
 			return false;
@@ -102,7 +130,10 @@ class BookModel {
 			$this->db->bind('isbn', $isbn);
 			$this->db->execute();
 
-			return $this->db->rowCount();
+			$result = $this->db->rowCount();
+			
+			$this->db->close();
+			return $result;
 		}
 		// Exception Needed to Prevent If This Primary Key is a Foreign Key on Another Table
 		catch(Exception $e) {

@@ -1,84 +1,77 @@
 
 $(function () {
     // Navbar Scroll
-    let str = window.location.href;
-    // if (str.match(/form.php|edit.php/)) {
-    if (str.match(/view_book.php/)) {
-        let get_navbar = document.querySelector(".fixed-top");
-        get_navbar.style.backgroundColor = "#007bff";
-    }
-    else {
-        $(document).scroll(function () {
-            var $nav = $(".fixed-top");
-            $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-        });
-    }
 
-    // Search on key up
-    $("#keyword").keyup(function () {
+    $(document).scroll(function () {
+        var $nav = $(".fixed-top");
+        $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+    });
 
-        function fillData(itemList) {
-            let title = "<div class='col-12 mb-4 text-center'>"
-                + "<h1>Hasil <span style='color: #007bff; '>Pencarian</span></h1>"
-                + "</div>"
-                + itemList
+    // // Search on key up
+    // $("#keyword").keyup(function () {
 
-            return title;
-        }
+    //     function fillData(itemList) {
+    //         let title = "<div class='col-12 mb-4 text-center'>"
+    //             + "<h1>Hasil <span style='color: #007bff; '>Pencarian</span></h1>"
+    //             + "</div>"
+    //             + itemList
 
-        let xhr = new XMLHttpRequest();
+    //         return title;
+    //     }
 
-        // Checikng ajax availablity
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                $('#benefits').html("");
-                $("#old_page").html("");
-                $('#benefits').css({ "padding": "0", "margin": "0" })
-                $("#konten").html(fillData(xhr.responseText));
-            }
-        }
+    //     let xhr = new XMLHttpRequest();
 
-        if ($("#keyword").val() != "") {
-            xhr.open('GET', 'ajax/cari.php?keyword=' + $("#keyword").val(), true);
-            xhr.send();
-        }
-        else {
-            $('.pagination li a').remove();
-        }
+    //     // Checikng ajax availablity
+    //     xhr.onreadystatechange = () => {
+    //         if (xhr.readyState == 4 && xhr.status == 200) {
+    //             $('#benefits').html("");
+    //             $("#old_page").html("");
+    //             $('#benefits').css({ "padding": "0", "margin": "0" })
+    //             $("#konten").html(fillData(xhr.responseText));
+    //         }
+    //     }
 
-    })
+    //     if ($("#keyword").val() != "") {
+    //         xhr.open('GET', 'ajax/cari.php?keyword=' + $("#keyword").val(), true);
+    //         xhr.send();
+    //     }
+    //     else {
+    //         $('.pagination li a').remove();
+    //     }
 
-    // Pagination code
-    $(".pagination li a").click(function () {
-        e.preventDefault();
-        var pageId = $(this).attr("id");
+    // })
 
-        function fillData(itemList) {
-            let title = "<div class='col-12 mb-4 text-center'>"
-                + "<h1>Hasil <span style='color: #007bff; '>Pencarian</span></h1>"
-                + "</div>"
-                + itemList
+    // // Pagination code
+    // $(".pagination li a").click(function () {
+    //     e.preventDefault();
+    //     var pageId = $(this).attr("id");
 
-            return title;
-        }
+    //     function fillData(itemList) {
+    //         let title = "<div class='col-12 mb-4 text-center'>"
+    //             + "<h1>Hasil <span style='color: #007bff; '>Pencarian</span></h1>"
+    //             + "</div>"
+    //             + itemList
 
-        let xhr = new XMLHttpRequest();
+    //         return title;
+    //     }
 
-        // Checikng ajax availablity
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                $('#benefits').html("");
-                $("#old_page").html("");
-                $('#benefits').css({ "padding": "0", "margin": "0" })
-                $("#konten").html(fillData(xhr.responseText));
-            }
-        }
+    //     let xhr = new XMLHttpRequest();
 
-        if ($("#keyword").val() != "") {
-            xhr.open('GET', 'ajax/cari.php?keyword=' + $("#keyword").val() + '&page=' + pageId, true);
-            xhr.send();
-        }
-    })
+    //     // Checikng ajax availablity
+    //     xhr.onreadystatechange = () => {
+    //         if (xhr.readyState == 4 && xhr.status == 200) {
+    //             $('#benefits').html("");
+    //             $("#old_page").html("");
+    //             $('#benefits').css({ "padding": "0", "margin": "0" })
+    //             $("#konten").html(fillData(xhr.responseText));
+    //         }
+    //     }
+
+    //     if ($("#keyword").val() != "") {
+    //         xhr.open('GET', 'ajax/cari.php?keyword=' + $("#keyword").val() + '&page=' + pageId, true);
+    //         xhr.send();
+    //     }
+    // })
 
 
 });

@@ -15,7 +15,11 @@ class MemberModel {
 		
 		$this->db->query("SELECT * FROM " . $this->table);
 		$this->db->execute();
-		return $this->db->resultSet();
+
+		$result = $this->db->resultSet();
+
+		$this->db->close();
+		return $result;
 
 	}
 
@@ -24,8 +28,11 @@ class MemberModel {
 		$this->db->query("SELECT * FROM " . $this->table . " WHERE id = :id");
 		$this->db->bind('id', $id);
 		$this->db->execute();
-		return $this->db->single();
+		$result = $this->db->single();
 		
+		$this->db->close();
+		return $result;
+
 	}
 
     public function save($data) {
@@ -43,7 +50,10 @@ class MemberModel {
 		$this->db->bind('updated_at', $updated_at);
 		$this->db->execute();
 
-		return $this->db->rowCount();
+		$result = $this->db->rowCount();
+
+		$this->db->close();
+		return $result;
 
     }
 
@@ -73,7 +83,10 @@ class MemberModel {
 
 		$this->db->execute();
 
-		return $this->db->rowCount();
+		$result = $this->db->rowCount();
+
+		$this->db->close();
+		return $result;
 
     }
 
@@ -84,13 +97,15 @@ class MemberModel {
 			$this->db->bind('id', $id);
 			$this->db->execute();
 
-			return $this->db->rowCount();
+			$result = $this->db->rowCount();
+			
+			$this->db->close();
+			return $result;
 		}
 		// Exception Needed Because Members ID is a Foreign Key on another table
 		catch(Exception $e) {
 			return false;
 		}
-
 
     }
 	

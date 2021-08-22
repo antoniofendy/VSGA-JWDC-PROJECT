@@ -42,7 +42,7 @@ class Book extends Controller {
 
 		if ($error) {
 			Flasher::setFlash('Please fill all of the input form', 'danger');
-			header('location: ' . BASE_URL . '/book/create');
+			header('location: ' . BASE_URL . '/Book/create');
 			die();
 		}
 
@@ -72,25 +72,25 @@ class Book extends Controller {
             // Check cover exists
             if (!file_exists($_FILES["cover"]["tmp_name"])) {
                 Flasher::setFlash("Book's cover is not available", 'danger');
-                header('location: ' . BASE_URL . '/book/create');
+                header('location: ' . BASE_URL . '/Book/create');
                 die();
             }
             // Check cover extension
             else if (!in_array($cover_ext, $acceptable)) {
                 Flasher::setFlash("Book's cover extension must be png/jpg/jpeg", 'danger');
-                header('location: ' . BASE_URL . '/book/create');
+                header('location: ' . BASE_URL . '/Book/create');
                 die();
             }
             // Check cover size
             else if (($_FILES["cover"]["size"] > $maxsize)) {
                 Flasher::setFlash("Book's cover maximum size must be 2 MB", 'danger');
-                header('location: ' . BASE_URL . '/book/create');
+                header('location: ' . BASE_URL . '/Book/create');
                 die();
             }
             // Check cover dimension
             else if ($cover_width < $cover_min_dimension[0] || $cover_height < $cover_min_dimension[1]) {
                 Flasher::setFlash("Book's cover dimension must be 250x250 px", 'danger');
-                header('location: ' . BASE_URL . '/book/create');
+                header('location: ' . BASE_URL . '/Book/create');
                 die();
             } else {
                 $cover_new = $_POST['isbn'] . "_cover." . $cover_ext;
@@ -100,7 +100,7 @@ class Book extends Controller {
             }
         } else {
             Flasher::setFlash("Book's cover must be uploaded", 'danger');
-            header('location: ' . BASE_URL . '/book/create');
+            header('location: ' . BASE_URL . '/Book/create');
             die();
         }
 
@@ -111,11 +111,11 @@ class Book extends Controller {
 
         if($result) {
             Flasher::setFlash("Successfuly add new book", 'success');
-            header('location: ' . BASE_URL . '/book');
+            header('location: ' . BASE_URL . '/Book');
         }
         else {
             Flasher::setFlash("Error occured when try add new book", 'danger');
-            header('location: ' . BASE_URL . '/book/create');
+            header('location: ' . BASE_URL . '/Book/create');
         }
 
     }
@@ -144,7 +144,7 @@ class Book extends Controller {
 
 		if ($error) {
 			Flasher::setFlash('Please fill all of the input form', 'danger');
-			header('location: ' . BASE_URL . '/book/edit/' . $_POST['isbn']);
+			header('location: ' . BASE_URL . '/Book/edit/' . $_POST['isbn']);
 			die();
 		}
 
@@ -176,32 +176,32 @@ class Book extends Controller {
             // Check cover exists
             if (!file_exists($_FILES["cover"]["tmp_name"])) {
                 Flasher::setFlash("book's cover is not available", 'danger');
-                header('location: ' . BASE_URL . '/book/edit/' . $_POST['isbn']);
+                header('location: ' . BASE_URL . '/Book/edit/' . $_POST['isbn']);
                 die();
             }
             // Check cover extension
             else if (!in_array($cover_ext, $acceptable)) {
                 Flasher::setFlash("book's cover extension must be png/jpg/jpeg", 'danger');
-                header('location: ' . BASE_URL . '/book/edit/' . $_POST['isbn']);
+                header('location: ' . BASE_URL . '/Book/edit/' . $_POST['isbn']);
                 die();
             }
             // Check cover size
             else if (($_FILES["cover"]["size"] > $maxsize)) {
                 Flasher::setFlash("book's cover maximum size must be 2 MB", 'danger');
-                header('location: ' . BASE_URL . '/book/edit/' . $_POST['isbn']);
+                header('location: ' . BASE_URL . '/Book/edit/' . $_POST['isbn']);
                 die();
             }
             // Check cover dimension
             else if ($cover_width < $cover_min_dimension[0] || $cover_height < $cover_min_dimension[1]) {
                 Flasher::setFlash("book's cover dimension must be 250x250 px", 'danger');
-                header('location: ' . BASE_URL . '/book/edit/' . $_POST['isbn']);
+                header('location: ' . BASE_URL . '/Book/edit/' . $_POST['isbn']);
                 die();
             } else {
                 $cover_new = $_POST['isbn'] . "_cover." . $cover_ext;
                 $cover_temp = $_POST['isbn'] . "_cover_temp." . $cover_ext;
 
                 // Check If book Has Old Image
-                $old_data = $this->model('bookModel')->find($_POST['isbn']);
+                $old_data = $this->model('BookModel')->find($_POST['isbn']);
                 
                 if($old_data['cover']) {
                     unlink($img_dir . $old_data['cover']);
@@ -221,11 +221,11 @@ class Book extends Controller {
 
         if($result) {
             Flasher::setFlash("Successfuly update book", 'success');
-            header('location: ' . BASE_URL . '/book');
+            header('location: ' . BASE_URL . '/Book');
         }
         else {
             Flasher::setFlash("Error occured when try update book", 'danger');
-            header('location: ' . BASE_URL . '/book/edit' . $_POST['isbn']);
+            header('location: ' . BASE_URL . '/Book/edit' . $_POST['isbn']);
         }
 
     }
@@ -236,11 +236,11 @@ class Book extends Controller {
         if($result) {
             
             Flasher::setFlash("Successfuly delete book", 'success');
-            header('location: ' . BASE_URL . '/book');
+            header('location: ' . BASE_URL . '/Book');
         }
         else {
             Flasher::setFlash("Error occured when try delete book", 'danger');
-            header('location: ' . BASE_URL . '/book');
+            header('location: ' . BASE_URL . '/Book');
         }
 
     }

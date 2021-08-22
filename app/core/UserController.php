@@ -8,29 +8,29 @@ if (!isset($_SESSION)) {
 
 date_default_timezone_set('Asia/Jakarta');
 
-class Controller {
+class UserController {
 
 	public function __construct() {
 		// If user doesn't have session and not login 
-		if(!isset($_SESSION['username']) && !isset($_POST['username'])) {
-			$data['title'] = "Administrator Login";
+		if(!isset($_SESSION['catalog_username']) && !isset($_POST['catalog_username'])) {
+			$data['title'] = "User Login";
 			$this->view('template/login-header', $data);
-			$this->view('login/index');
+			$this->view('catalog/login');
 			$this->view('template/login-footer');
 			die();
 		}
 
 		// Session Handler
-		if(!empty($_SESSION['username'])){
+		if(!empty($_SESSION['catalog_username'])){
 			$timeout = 6000;
-			$elapsed = time() - $_SESSION['start'];
+			$elapsed = time() - $_SESSION['catalog_start'];
 			if ($elapsed >= $timeout) {
 				session_destroy();
-				echo '<script type="text/javascript">alert("Session expired."); window.location = "' . BASE_URL . '/Admin"</script>';
+				echo '<script type="text/javascript">alert("Session expired."); window.location = "' . BASE_URL . '/Catalog"</script>';
 			}
 		}
-		else{
-			header('location:' . BASE_URL . '/Admin');
+		else {
+			header('location:' . BASE_URL . '/Catalog');
 		}
 
 	}

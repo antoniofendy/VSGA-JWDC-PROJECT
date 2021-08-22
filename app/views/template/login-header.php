@@ -7,7 +7,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Administrator Login</title>
+	<title><?= $data['title'] ?></title>
 
 	<!-- Custom fonts for this template-->
 	<script src="https://kit.fontawesome.com/f4d04cc260.js" crossorigin="anonymous"></script>

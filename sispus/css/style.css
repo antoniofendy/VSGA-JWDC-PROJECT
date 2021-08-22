@@ -1,0 +1,126 @@
+/* Navbar */
+.navbar-dark .navbar-brand {
+    color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.navbar-dark .navbar-nav .active > .nav-link, .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show > .nav-link {
+    color: #fff;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+}
+
+.navbar-toggler {
+    background: #fff;
+}
+
+.navbar-nav {
+    text-align: center;
+}
+
+.nav-link {
+    padding: .2rem 1rem;
+}
+
+.nav-link.active,.nav-link:focus{
+    color: #fff;
+}
+
+.navbar-toggler {
+    padding: 1px 5px;
+    font-size: 18px;
+    line-height: 0.3;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+    color: #fff;
+}
+
+.navbar.fixed-top.scrolled {
+    background-color: #007bff !important;
+    transition: background-color 200ms linear;
+    color: black;
+}
+
+/* Content */
+.container {
+    padding-top: 30px;
+    min-height: 550px;
+    margin-bottom: 20px;
+    overflow: visible;
+}
+
+/* Jumbotrol */
+.jumbotron {
+    position: relative;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/* Img Katalog */
+.img-katalog {
+    width: 100px;
+    height: auto;
+}
+
+/* Footer */
+#footer {
+    margin-top: 100px;
+    background-color: #222;
+    flex-shrink: 0;
+}
+#copyright {
+    background-color: #007bff;
+}
+
+#copyright p {
+    font-size: 15px;
+    margin: 0;
+    color: white;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    img.img-benefit {
+        width: 50%;
+        height: auto;
+        margin-left: 80px;
+    }
+
+    .img-katalog {
+        display: none;
+    }
+
+    .addition {
+        margin-top: 30px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+    .img-katalog {
+        display: none;
+    }
+
+    .addition {
+        margin-top: 30px;
+    }
+
+} 

@@ -30,12 +30,12 @@
             <div class="col-12">
                 <div class="card shadow mb-4">
                     <div class="card-body">
-                        <a href="<?= BASE_URL ?>/member" class="btn btn-sm btn-outline-primary shadow-sm accent-font-t mr-2">
+                        <a href="<?= BASE_URL ?>/Member" class="btn btn-sm btn-outline-primary shadow-sm accent-font-t mr-2">
                             <span class="fa fa-arrow-left"></span> Back
                         </a>
                         <h3 class="accent-font-t d-inline h5 align-middle"><b>New Member</b></h3>
                         <hr>
-                        <form action="<?= BASE_URL ?>/member/store" method="post" enctype="multipart/form-data">
+                        <form action="<?= BASE_URL ?>/Member/store" method="post" enctype="multipart/form-data">
                             <div div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="picture">Member's Picture* </label>

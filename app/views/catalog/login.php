@@ -20,24 +20,24 @@
 
                                 <!-- Login title -->
                                 <div class="text-center"><br><br>
-                                    <h1 class="h2 text-gray-900 mb-4 accent-font font-weight-bold">ADMINISTRATOR LOGIN</h1>
+                                    <h1 class="h2 text-gray-900 mb-4 accent-font font-weight-bold">USER LOGIN</h1>
                                     <br>
                                 </div>
 
                                 <!-- Login form -->
-                                <form class="user" method="post" action="Login/login_handler" autocomplete="off">
+                                <form class="user" method="post" action="UserLogin/login_handler" autocomplete="off">
 
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Username" value="<?= isset($_COOKIE['cUsername']) ? $_COOKIE['cUsername'] : ''; ?>">
+                                        <input type="text" class="form-control form-control-user" id="username" name="catalog_username" placeholder="Username" value="<?= isset($_COOKIE['caUsername']) ? $_COOKIE['caUsername'] : ''; ?>">
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password" value="<?= isset($_COOKIE['cPassword']) ? $_COOKIE['cPassword'] : ''; ?>">
+                                        <input type="password" class="form-control form-control-user" id="password" name="catalog_password" placeholder="Password" value="<?= isset($_COOKIE['caPassword']) ? $_COOKIE['caPassword'] : ''; ?>">
                                     </div>
 
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
-                                            <input name="remember" type="checkbox" class="custom-control-input" id="remember" <?= isset($_COOKIE['cRemember']) ? 'checked' : ''; ?>>
+                                            <input name="remember" type="checkbox" class="custom-control-input" id="remember" <?= isset($_COOKIE['caRemember']) ? 'checked' : ''; ?>>
                                             <label class="custom-control-label" for="remember">Remember Me</label>
                                         </div>
                                     </div>

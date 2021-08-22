@@ -15,7 +15,11 @@ class LoginModel {
 		$this->db->bind('username', $data['username']);
 		$this->db->bind('password', $data['password']);
 		$this->db->execute();
-		return $this->db->single();
+		
+		$result =  $this->db->single();
+
+		$this->db->close();
+		return $result;
 
 	}
 	

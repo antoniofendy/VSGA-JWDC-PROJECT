@@ -45,7 +45,7 @@ class User extends Controller {
 
 		if ($error) {
 			Flasher::setFlash('Please fill all of the input form', 'danger');
-			header('location: ' . BASE_URL . '/user/edit/' . $_POST['id']);
+			header('location: ' . BASE_URL . '/User/edit/' . $_POST['id']);
 			die();
 		}
         
@@ -63,11 +63,11 @@ class User extends Controller {
 
         if($result) {
             Flasher::setFlash("Successfuly update user", 'success');
-            header('location: ' . BASE_URL . '/user');
+            header('location: ' . BASE_URL . '/User');
         }
         else {
             Flasher::setFlash("Error occured when try update user", 'danger');
-            header('location: ' . BASE_URL . '/user/edit' . $_POST['id']);
+            header('location: ' . BASE_URL . '/User/edit' . $_POST['id']);
         }
 	
     }

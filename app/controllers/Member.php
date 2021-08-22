@@ -45,7 +45,7 @@ class Member extends Controller {
 
 		if ($error) {
 			Flasher::setFlash('Please fill all of the input form', 'danger');
-			header('location: ' . BASE_URL . '/member/create');
+			header('location: ' . BASE_URL . '/Member/create');
 			die();
 		}
 
@@ -75,25 +75,25 @@ class Member extends Controller {
             // Check picture exists
             if (!file_exists($_FILES["picture"]["tmp_name"])) {
                 Flasher::setFlash("Member's picture is not available", 'danger');
-                header('location: ' . BASE_URL . '/member/create');
+                header('location: ' . BASE_URL . '/Member/create');
                 die();
             }
             // Check picture extension
             else if (!in_array($picture_ext, $acceptable)) {
                 Flasher::setFlash("Member's picture extension must be png/jpg/jpeg", 'danger');
-                header('location: ' . BASE_URL . '/member/create');
+                header('location: ' . BASE_URL . '/Member/create');
                 die();
             }
             // Check picture size
             else if (($_FILES["picture"]["size"] > $maxsize)) {
                 Flasher::setFlash("Member's picture maximum size must be 2 MB", 'danger');
-                header('location: ' . BASE_URL . '/member/create');
+                header('location: ' . BASE_URL . '/Member/create');
                 die();
             }
             // Check picture dimension
             else if ($picture_width < $picture_min_dimension[0] || $picture_height < $picture_min_dimension[1]) {
                 Flasher::setFlash("Member's picture dimension must be 250x250 px", 'danger');
-                header('location: ' . BASE_URL . '/member/create');
+                header('location: ' . BASE_URL . '/Member/create');
                 die();
             } else {
                 $picture_new = $_POST['id'] . "_picture." . $picture_ext;
@@ -103,7 +103,7 @@ class Member extends Controller {
             }
         } else {
             Flasher::setFlash("Member's picture must be uploaded", 'danger');
-            header('location: ' . BASE_URL . '/member/create');
+            header('location: ' . BASE_URL . '/Member/create');
             die();
         }
 
@@ -116,11 +116,11 @@ class Member extends Controller {
 
         if($result && $result2) {
             Flasher::setFlash("Successfuly add new member", 'success');
-            header('location: ' . BASE_URL . '/member');
+            header('location: ' . BASE_URL . '/Member');
         }
         else {
             Flasher::setFlash("Error occured when try add new member", 'danger');
-            header('location: ' . BASE_URL . '/member/create');
+            header('location: ' . BASE_URL . '/Member/create');
         }
 
     }
@@ -150,7 +150,7 @@ class Member extends Controller {
 
 		if ($error) {
 			Flasher::setFlash('Please fill all of the input form', 'danger');
-			header('location: ' . BASE_URL . '/member/edit/' . $_POST['id']);
+			header('location: ' . BASE_URL . '/Member/edit/' . $_POST['id']);
 			die();
 		}
 
@@ -182,25 +182,25 @@ class Member extends Controller {
             // Check picture exists
             if (!file_exists($_FILES["picture"]["tmp_name"])) {
                 Flasher::setFlash("Member's picture is not available", 'danger');
-                header('location: ' . BASE_URL . '/member/edit/' . $_POST['id']);
+                header('location: ' . BASE_URL . '/Member/edit/' . $_POST['id']);
                 die();
             }
             // Check picture extension
             else if (!in_array($picture_ext, $acceptable)) {
                 Flasher::setFlash("Member's picture extension must be png/jpg/jpeg", 'danger');
-                header('location: ' . BASE_URL . '/member/edit/' . $_POST['id']);
+                header('location: ' . BASE_URL . '/Member/edit/' . $_POST['id']);
                 die();
             }
             // Check picture size
             else if (($_FILES["picture"]["size"] > $maxsize)) {
                 Flasher::setFlash("Member's picture maximum size must be 2 MB", 'danger');
-                header('location: ' . BASE_URL . '/member/edit/' . $_POST['id']);
+                header('location: ' . BASE_URL . '/Member/edit/' . $_POST['id']);
                 die();
             }
             // Check picture dimension
             else if ($picture_width < $picture_min_dimension[0] || $picture_height < $picture_min_dimension[1]) {
                 Flasher::setFlash("Member's picture dimension must be 250x250 px", 'danger');
-                header('location: ' . BASE_URL . '/member/edit/' . $_POST['id']);
+                header('location: ' . BASE_URL . '/Member/edit/' . $_POST['id']);
                 die();
             } else {
                 $picture_new = $_POST['id'] . "_picture." . $picture_ext;
@@ -227,11 +227,11 @@ class Member extends Controller {
 
         if($result) {
             Flasher::setFlash("Successfuly update member", 'success');
-            header('location: ' . BASE_URL . '/member');
+            header('location: ' . BASE_URL . '/Member');
         }
         else {
             Flasher::setFlash("Error occured when try update member", 'danger');
-            header('location: ' . BASE_URL . '/member/edit' . $_POST['id']);
+            header('location: ' . BASE_URL . '/Member/edit' . $_POST['id']);
         }
         
     }
@@ -239,14 +239,16 @@ class Member extends Controller {
     public function delete($id) {
     
         $result = $this->model('MemberModel')->delete($id);
-        if($result) {
+        $result2 = $this->model('UserModel')->delete($id);
+
+        if($result && $result2) {
             
             Flasher::setFlash("Successfuly delete member", 'success');
-            header('location: ' . BASE_URL . '/member');
+            header('location: ' . BASE_URL . '/Member');
         }
         else {
             Flasher::setFlash("Error occured when try delete member", 'danger');
-            header('location: ' . BASE_URL . '/member');
+            header('location: ' . BASE_URL . '/Member');
         }
 
     }

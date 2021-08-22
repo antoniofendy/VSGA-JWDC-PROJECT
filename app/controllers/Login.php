@@ -7,9 +7,12 @@ if (!isset($_SESSION)) {
 class Login extends Controller {
 
 	public function index() {
-		$this->view('template/login-header');
+
+		$data['title'] = "Administrator Login";	
+		$this->view('template/login-header', $data);
 		$this->view('login/index');
 		$this->view('template/login-footer');
+	
 	}
 	
 	public function login_handler() { 
@@ -24,9 +27,13 @@ class Login extends Controller {
 
 		if ($error) {
 			Flasher::setFlash('Please fill all of the input form', 'danger');
-			header('location: ' . BASE_URL);
+			header('location: ' . BASE_URL . '/Admin');
 			die();
 		}
+
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		$remember = isset($_POST['remember']) ? $_POST['remember'] : '';
 		
 		$hashed_password = md5($_POST['password']);
 		$data = [
@@ -51,10 +58,10 @@ class Login extends Controller {
 				setcookie('cRemember', null, -1, "/", null);
 			}
 			
-			header('location:' . BASE_URL . '/Dashboard');
+			header('location:' . BASE_URL . '/Admin');
 		} else {
 			Flasher::setFlash('Invalid username or password', 'danger');
-			header('location:' . BASE_URL);
+			header('location:' . BASE_URL . '/Admin');
 		}
 
 	}
@@ -66,7 +73,7 @@ class Login extends Controller {
 		
 		session_destroy();
 		
-		header('location:' . BASE_URL);
+		header('location:' . BASE_URL . '/Admin');
 	}
 
 }

@@ -1,14 +1,14 @@
 <?php
 
-error_reporting(0);
-
 if (!isset($_SESSION)) {
     session_start();
 }
 
+error_reporting(0);
+
 class App {
 
-	protected $controller = 'Dashboard';
+	protected $controller = 'Catalog';
 	protected $method = 'index';
 	protected $params = [];
 

@@ -30,12 +30,12 @@
             <div class="col-12">
                 <div class="card shadow mb-4">
                     <div class="card-body">
-                        <a href="<?= BASE_URL ?>/book" class="btn btn-sm btn-outline-primary shadow-sm accent-font-t mr-2">
+                        <a href="<?= BASE_URL ?>/Book" class="btn btn-sm btn-outline-primary shadow-sm accent-font-t mr-2">
                             <span class="fa fa-arrow-left"></span> Back
                         </a>
                         <h3 class="accent-font-t d-inline h5 align-middle"><b>Edit Book</b></h3>
                         <hr>
-                        <form action="<?= BASE_URL ?>/book/update" method="post" enctype="multipart/form-data" onsubmit="return validasiForm()">
+                        <form action="<?= BASE_URL ?>/Book/update" method="post" enctype="multipart/form-data" onsubmit="return validasiForm()">
                             <div div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="cover">Book's Cover* </label>

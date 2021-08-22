@@ -73,8 +73,8 @@
                                             </td>
                                             <td class="text-center align-middle"><?= $book['status'] ?></td>
                                             <td class="text-center align-middle" width="15%">
-                                                <a href="<?= BASE_URL ?>/book/edit/<?= $book['isbn'] ?>" class="btn btn-small"><i class="fas fa-pen"></i></a>
-                                                <a onclick="deleteConfirm('<?= BASE_URL ?>/book/delete/<?= $book['isbn'] ?>')" href="#" class="btn btn-small text-danger"><i class="fas fa-trash"></i></a>
+                                                <a href="<?= BASE_URL ?>/Book/edit/<?= $book['isbn'] ?>" class="btn btn-small"><i class="fas fa-pen"></i></a>
+                                                <a onclick="deleteConfirm('<?= BASE_URL ?>/Book/delete/<?= $book['isbn'] ?>')" href="#" class="btn btn-small text-danger"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -132,7 +132,7 @@
         "dom": "<'row'<'col-12 col-md-2 p-0 mb-2 mb-md-0 text-md-left text-center'<'#newBtn.btn btn-sm btn-primary shadow-sm p-0'>><'col-12 col-md-10 text-right d-inline-block'f>>t<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>"
         });
 
-        $('<a href="<?= BASE_URL ?>/book/create" class="btn btn-sm btn-primary shadow-sm accent-font-t"><i id="newBtnText" class="fas fa-plus fa-sm text-white-50"></i> New</a>').appendTo('#newBtn');
+        $('<a href="<?= BASE_URL ?>/Book/create" class="btn btn-sm btn-primary shadow-sm accent-font-t"><i id="newBtnText" class="fas fa-plus fa-sm text-white-50"></i> New</a>').appendTo('#newBtn');
     });
 
     function deleteConfirm(url) {

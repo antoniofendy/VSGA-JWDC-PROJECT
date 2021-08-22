@@ -19,7 +19,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item <?php echo $current_page == 'dashboard' ? 'active' : '' ?>">
-        <a class="nav-link" href="<?= BASE_URL ?>">
+        <a class="nav-link" href="<?= BASE_URL ?>/Admin">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
         </a>
@@ -43,9 +43,9 @@
         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Master Data:</h6>
-                <a class="collapse-item" href="<?= BASE_URL ?>/member"> Members</a>
-                <a class="collapse-item" href="<?= BASE_URL ?>/book"> Books</a>
-                <a class="collapse-item" href="<?= BASE_URL ?>/user"> Users</a>
+                <a class="collapse-item" href="<?= BASE_URL ?>/Member"> Members</a>
+                <a class="collapse-item" href="<?= BASE_URL ?>/Book"> Books</a>
+                <a class="collapse-item" href="<?= BASE_URL ?>/User"> Users</a>
             </div>
         </div>
     </li>

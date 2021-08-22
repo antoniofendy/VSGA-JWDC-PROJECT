@@ -59,7 +59,7 @@
                                             <td class="align-middle" style="text-transform: capitalize;"><?= $user['name'] ?></td>
                                 
                                             <td class="text-center align-middle">
-                                                <a href="<?= BASE_URL ?>/user/edit/<?= $user['id'] ?>" class="btn btn-small"><i class="fas fa-pen"></i></a>
+                                                <a href="<?= BASE_URL ?>/User/edit/<?= $user['id'] ?>" class="btn btn-small"><i class="fas fa-pen"></i></a>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -117,7 +117,7 @@
         // "dom": "<'row'<'col-12 col-md-2 p-0 mb-2 mb-md-0 text-md-left text-center'<'#newBtn.btn btn-sm btn-primary shadow-sm p-0'>><'col-12 col-md-10 text-right d-inline-block'f>>t<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>"
         });
 
-        // $('<a href="<?= BASE_URL ?>/member/create" class="btn btn-sm btn-primary shadow-sm accent-font-t"><i id="newBtnText" class="fas fa-plus fa-sm text-white-50"></i> New</a>').appendTo('#newBtn');
+        // $('<a href="<?= BASE_URL ?>/Member/create" class="btn btn-sm btn-primary shadow-sm accent-font-t"><i id="newBtnText" class="fas fa-plus fa-sm text-white-50"></i> New</a>').appendTo('#newBtn');
     });
 
     // function deleteConfirm(url) {
