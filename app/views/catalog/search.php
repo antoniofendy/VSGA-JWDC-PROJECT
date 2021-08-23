@@ -62,11 +62,12 @@
     ?>
     
     <div class="jumbotron text-white text-center" style="padding-top:100px">
-        <h1 class="display-4">Selamat datang di website GoLibrary</h1>
-        <p class="lead">Platform E-Library yang bisa kamu akses kapanpun dan di manapun</p>
+        <h1 class="display-4">Welcome to GoLibrary</h1>
+        <p class="lead">E-Library platform that you can access anytime and anywhere</p>
         <hr class="my-4">
-        <form class="form-inline my-2 my-lg-0 d-flex justify-content-center" autocomplete="off" method="post" action="<?= BASE_URL ?>/Catalog/search">
-            <input class="form-control" style="width: 50%" name="keyword" type="text" placeholder="Cari E-Book" aria-label="Search" id="keyword" value="<?= $data['keyword']?>">
+        <form class="form-inline my-2 my-lg-0 d-flex justify-content-center" autocomplete="off" method="post" action="<?= BASE_URL ?>/Catalog/search/1">
+            <input class="form-control" style="width: 50%" name="keyword" type="text" placeholder="Cari E-Book" aria-label="Search" id="keyword" value="<?= isset($data['keyword']) ? $data['keyword'] : '' ?>">
+            <button class="btn btn-success mx-2 my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
     <div class="container pt-5">
@@ -121,6 +122,22 @@
                 ?>
             </ul>
             <?php
+                    $pagination="";
+
+                    $pagination.="<ul class='pagination justify-content-center mt-5' style='margin:20px 0'>";
+            
+                    for ($i=1; $i <= $data['total_page'] ; $i++) { 
+                        if ($i == $data['page']) {
+                            $active = "active";
+                        } else{
+                            $active = "";
+                        }
+                        $pagination.="<li class='page-item $active'><a class='page-link' id='$i' href='" . BASE_URL ."/Catalog/search/" . $i ."'>$i</a></li>";
+                    }
+            
+                    $pagination .= "</ul>";
+            
+                    echo $pagination;
                 }
                 else {
                     echo "<h3><span class='badge badge-warning'>No result found</span></h3>";

@@ -26,8 +26,17 @@ class User extends Controller {
 
         $data['user'] = $this->model('UserModel')->find($id);
 
+        $data['username_temp'] = $this->model('UserModel')->getAllUsername();
+        $data['username'] = [];
+
+        foreach ($data['username_temp'] as $user) {
+            array_push($data['username'], $user['username']);
+        }
+
+        unset($data['username_temp']);
+
         $this->view('template/dashboard-header', $data);
-		$this->view('user/edit', $data['user']);
+		$this->view('user/edit', $data);
 		$this->view('template/dashboard-footer');
 	
     }
@@ -35,7 +44,7 @@ class User extends Controller {
     public function update() {
         
         // Check all non-filetype input
-        $required = array('id', 'members_id', 'name', 'username', 'password');
+        $required = array('id', 'members_id', 'name', 'username');
 
 		$error = false;
 

@@ -62,18 +62,19 @@
     ?>
     
     <div class="jumbotron text-white text-center" style="padding-top:100px">
-        <h1 class="display-4">Selamat datang di website GoLibrary</h1>
-        <p class="lead">Platform E-Library yang bisa kamu akses kapanpun dan di manapun</p>
+        <h1 class="display-4">Welcome to GoLibrary</h1>
+        <p class="lead">E-Library platform that you can access anytime and anywhere</p>
         <hr class="my-4">
-        <form class="form-inline my-2 my-lg-0 d-flex justify-content-center" autocomplete="off" method="post" action="Catalog/search">
+        <form class="form-inline my-2 my-lg-0 d-flex justify-content-center" autocomplete="off" method="post" action="<?= BASE_URL ?>/Catalog/search/1">
             <input class="form-control" style="width: 50%" name="keyword" type="text" placeholder="Cari E-Book" aria-label="Search" id="keyword">
+            <button class="btn btn-success mx-2 my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
     <div class="container pt-5">
         <div class="row d-flex justify-content-center" id="konten">
             <div class="col-12 mb-4 text-center">
-                <h1>Daftar <span style="color: #007bff;">Katalog</span></h1>
-                <p>Kumpulan rekomendasi buku untukmu</p>
+                <h1>Catalog <span style="color: #007bff;">List</span></h1>
+                <p>Books Recommendation for You</p>
             </div>
             <ul class="list-group d-flex justify-content-center p-3">
                 <?php

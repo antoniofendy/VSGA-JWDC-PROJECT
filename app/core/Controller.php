@@ -25,7 +25,9 @@ class Controller {
 			$timeout = 6000;
 			$elapsed = time() - $_SESSION['start'];
 			if ($elapsed >= $timeout) {
-				session_destroy();
+				unset($_SESSION['username']);
+				unset($_SESSION['userid']);
+				unset($_SESSION['start']);
 				echo '<script type="text/javascript">alert("Session expired."); window.location = "' . BASE_URL . '/Admin"</script>';
 			}
 		}

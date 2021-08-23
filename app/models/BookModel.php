@@ -32,7 +32,11 @@ class BookModel {
 
 	}
 
-	public function search($keyword) {
+	public function search($keyword, $page) {
+
+		$limit = 5;
+
+		$offset = (intval($page)-1) * $limit;
 
 		$this->db->query("SELECT * FROM " . $this->table . " WHERE 
 			title LIKE :keyword OR
@@ -40,13 +44,40 @@ class BookModel {
 			category LIKE :keyword OR
 			writer LIKE :keyword OR
 			publisher LIKE :keyword OR
-			year LIKE :keyword
+			year LIKE :keyword LIMIT :offset, :limit
+		");
+		$this->db->bind('keyword', "%$keyword%");
+		$this->db->bind('offset', $offset);
+		$this->db->bind('limit', $limit);
+		$this->db->execute();
+		$result = $this->db->resultSet();
+		$this->db->close();
+		return $result;
+
+	}
+
+	public function allRecord($keyword) {
+
+		$limit = 5;
+
+		$this->db->query("SELECT * FROM " . $this->table . " WHERE 
+			title LIKE :keyword OR
+			isbn LIKE :keyword OR
+			category LIKE :keyword OR
+			writer LIKE :keyword OR
+			publisher LIKE :keyword OR
+			year LIKE :keyword 
 		");
 		$this->db->bind('keyword', "%$keyword%");
 		$this->db->execute();
 		$result = $this->db->resultSet();
 		$this->db->close();
-		return $result;
+
+		$result = count($result);
+
+		$total_record = ceil($result/$limit);
+
+		return $total_record;
 
 	}
 

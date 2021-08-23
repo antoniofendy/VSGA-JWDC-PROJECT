@@ -1,7 +1,8 @@
 let input_field = [
     username = {
         id: "username",
-        required: "User's username must be filled"
+        required: "User's username must be filled",
+        alreadyInDB: "This username already used by another user"
     },
     new_password = {
         id: "new_password"
@@ -39,6 +40,13 @@ function validasiForm() {
         // username error message not filled
         addErrorMessage(username.id, username.required);
         return false;
+    }
+    else {
+        if (users.includes(username_input.value)) {
+            // username error message already in db
+            addErrorMessage(username.id, username.alreadyInDB);
+            return false;
+        }
     }
 
     // CHECK new and retype password

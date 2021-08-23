@@ -22,6 +22,17 @@ class UserModel {
 
 	}
 
+	public function getAllUsername() {
+
+		$this->db->query("SELECT username FROM " . $this->table);
+		$this->db->execute();
+		$result = $this->db->resultSet();
+
+		$this->db->close();
+		return $result;
+
+	}
+
 	public function find($id) {
 
 		$this->db->query("SELECT u.id, u.members_id, m.name, u.username, u.password FROM " . $this->table . " u INNER JOIN members m ON u.members_id = m.id WHERE u.id = :id");

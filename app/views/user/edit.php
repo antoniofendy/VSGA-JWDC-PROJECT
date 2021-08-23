@@ -40,25 +40,25 @@
                             <div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="id">ID</label>
-                                    <input type="text" class="form-control" name="id" id="id" value="<?= $data['id'] ?>" readonly>
+                                    <input type="text" class="form-control" name="id" id="id" value="<?= $data['user']['id'] ?>" readonly>
                                 </div>
                             </div>
                             <div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="members_id">Member's ID</label>
-                                    <input type="text" class="form-control" name="members_id" id="members_id" value="<?= $data['members_id']; ?>" readonly>
+                                    <input type="text" class="form-control" name="members_id" id="members_id" value="<?= $data['user']['members_id']; ?>" readonly>
                                 </div>
                             </div>
                             <div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="name">Name</label>
-                                    <input type="text" class="form-control" name="name" id="name" value="<?= $data['name']; ?>" readonly>
+                                    <input type="text" class="form-control" name="name" id="name" value="<?= $data['user']['name']; ?>" readonly>
                                 </div>
                             </div>
                             <div class="form-row my-2">
                                 <div class="col-12 col-lg-6 col-xl-8">
                                     <label for="username">Username</label>
-                                    <input type="text" class="form-control" name="username" id="username" value="<?= $data['username']; ?>">
+                                    <input type="text" class="form-control" name="username" id="username" value="<?= $data['user']['username']; ?>">
                                     <small id="username-error" style="color: red;"></small>
                                 </div>
                             </div>
@@ -102,4 +102,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
 <!-- Validations -->
+<script>
+    <?php
+        $usernameArray = $data['username'];
+    ?>
+
+    let users = <?php echo json_encode($usernameArray); ?>;
+</script>
+
 <script src="<?= BASE_URL ?>/js/formValidation/userEditValidation.js"></script>

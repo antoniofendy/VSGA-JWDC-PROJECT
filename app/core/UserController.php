@@ -25,7 +25,9 @@ class UserController {
 			$timeout = 6000;
 			$elapsed = time() - $_SESSION['catalog_start'];
 			if ($elapsed >= $timeout) {
-				session_destroy();
+				unset($_SESSION['catalog_username']);
+				unset($_SESSION['catalog_userid']);
+				unset($_SESSION['catalog_start']);
 				echo '<script type="text/javascript">alert("Session expired."); window.location = "' . BASE_URL . '/Catalog"</script>';
 			}
 		}

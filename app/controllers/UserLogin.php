@@ -69,7 +69,11 @@ class UserLogin extends UserController {
 			session_start();
 		}
 		
-		session_destroy();
+		// session_destroy();
+		unset($_SESSION['catalog_username']);
+		unset($_SESSION['catalog_userid']);
+		unset($_SESSION['catalog_start']);
+
 		
 		header('location:' . BASE_URL . '/Catalog');
 	}

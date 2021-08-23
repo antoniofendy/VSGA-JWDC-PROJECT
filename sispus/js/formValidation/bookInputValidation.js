@@ -55,10 +55,13 @@ function clearErrorMessage() {
 }
 
 function checkDigit(value) {
-    if (value === 10 || value === 13) {
+    if (value === 10) {
         return false;
     }
-    return true
+    else if (value === 13) {
+        return false;
+    }
+    return true;
 }
 
 function yearDigit(value) {

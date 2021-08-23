@@ -71,7 +71,11 @@ class Login extends Controller {
 			session_start();
 		}
 		
-		session_destroy();
+		// session_destroy();
+
+		unset($_SESSION['username']);
+		unset($_SESSION['userid']);
+		unset($_SESSION['start']);
 		
 		header('location:' . BASE_URL . '/Admin');
 	}
