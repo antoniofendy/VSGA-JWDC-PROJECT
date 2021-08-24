@@ -65,9 +65,6 @@ class UserLogin extends UserController {
 	}
 
 	public function logout_handler() {
-		if (!isset($_SESSION)) {
-			session_start();
-		}
 		
 		// session_destroy();
 		unset($_SESSION['catalog_username']);

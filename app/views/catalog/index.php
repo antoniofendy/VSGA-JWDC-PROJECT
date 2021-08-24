@@ -65,8 +65,8 @@
         <h1 class="display-4">Welcome to GoLibrary</h1>
         <p class="lead">E-Library platform that you can access anytime and anywhere</p>
         <hr class="my-4">
-        <form class="form-inline my-2 my-lg-0 d-flex justify-content-center" autocomplete="off" method="post" action="<?= BASE_URL ?>/Catalog/search/1">
-            <input class="form-control" style="width: 50%" name="keyword" type="text" placeholder="Cari E-Book" aria-label="Search" id="keyword">
+        <form class="form-inline my-2 my-lg-0 d-flex justify-content-center" autocomplete="off" method="post" action="<?= BASE_URL ?>/Catalog/search">
+            <input class="form-control" style="width: 50%" name="keyword" type="text" placeholder="Find Book" aria-label="Search" id="keyword">
             <button class="btn btn-success mx-2 my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
@@ -96,7 +96,7 @@
                                         ";
                                     }
                                 ?>
-                                <div class="addition text-right d-flex flex-row justify-content-end">
+                                <div class="addition mt-3 text-right d-flex flex-row justify-content-end">
                                     <div class="year mr-3">
                                         <p><span style="color:#9788a7;">Year:</span> <?= $book['year']; ?></p>
                                     </div>
@@ -104,14 +104,7 @@
                                         <p style="text-transform: capitalize;"><span style="color:#9788a7;">Status:</span> <?= $book['status']; ?></p>
                                     </div>
                                     <div class="category">
-                                        <?php
-                                            $categories = explode(",", $book['category']);
-                                            foreach($categories as $category) {
-                                                echo "
-                                                    <span class='badge badge-secondary'>$category</span>
-                                                ";
-                                            }
-                                        ?>
+                                        <p><span style="color:#9788a7;">Category:</span> <?= $book['category']; ?></p>
                                     </div>
                                 </div>
                             </div>

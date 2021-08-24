@@ -18,18 +18,20 @@ class Catalog extends UserController {
 	
     }
 
-    public function search($page) {
+    public function search() {
+
         if(isset($_POST['keyword'])) {
             $_SESSION['keyword'] = $_POST['keyword'];
         }
 
-        $result = $this->model('BookModel')->search($_SESSION['keyword'], $page);
-        $total_page = $this->model('BookModel')->allRecord($_SESSION['keyword']);
+        $result = $this->model('BookModel')->search($_SESSION['keyword']);
+
+        // $total_page = $this->model('BookModel')->allRecord($_SESSION['keyword']);
 
         $data['book'] = $result;
-        $data['total_page'] = $total_page;
+        // $data['total_page'] = $total_page;
         $data['keyword'] = $_SESSION['keyword'];
-        $data['page'] = $page;
+        // $data['page'] = $page;
 
         $this->view('catalog/search', $data);
 

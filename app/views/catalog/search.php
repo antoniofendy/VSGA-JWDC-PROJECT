@@ -65,18 +65,18 @@
         <h1 class="display-4">Welcome to GoLibrary</h1>
         <p class="lead">E-Library platform that you can access anytime and anywhere</p>
         <hr class="my-4">
-        <form class="form-inline my-2 my-lg-0 d-flex justify-content-center" autocomplete="off" method="post" action="<?= BASE_URL ?>/Catalog/search/1">
-            <input class="form-control" style="width: 50%" name="keyword" type="text" placeholder="Cari E-Book" aria-label="Search" id="keyword" value="<?= isset($data['keyword']) ? $data['keyword'] : '' ?>">
+        <form class="form-inline my-2 my-lg-0 d-flex justify-content-center" autocomplete="off" method="post" action="<?= BASE_URL ?>/Catalog/search">
+            <input class="form-control" style="width: 50%" name="keyword" type="text" placeholder="Find Book" aria-label="Search" id="keyword" value="<?= isset($data['keyword']) ? $data['keyword'] : '' ?>">
             <button class="btn btn-success mx-2 my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
     <div class="container pt-5">
-        <div class="row d-flex justify-content-center" id="konten">
+        <div class="row d-flex justify-content-center flex-column" id="konten">
             <div class="col-12 mb-4 text-center">
                 <h1>Search Results for <span style="color: #007bff;">"<?= $data['keyword']?>"</span></h1>
             </div>
             <?php if(!empty($data['book'])) { ?>
-            <ul class="list-group d-flex justify-content-center p-3">
+                <ul class="list-group d-flex justify-content-center p-3">
                 <?php
                     foreach($data['book'] as $key => $book) {
                 ?>
@@ -96,7 +96,7 @@
                                         ";
                                     }
                                 ?>
-                                <div class="addition text-right d-flex flex-row justify-content-end">
+                                <div class="addition mt-3 text-right d-flex flex-row justify-content-end">
                                     <div class="year mr-3">
                                         <p><span style="color:#9788a7;">Year:</span> <?= $book['year']; ?></p>
                                     </div>
@@ -104,45 +104,21 @@
                                         <p style="text-transform: capitalize;"><span style="color:#9788a7;">Status:</span> <?= $book['status']; ?></p>
                                     </div>
                                     <div class="category">
-                                        <?php
-                                            $categories = explode(",", $book['category']);
-                                            foreach($categories as $category) {
-                                                echo "
-                                                    <span class='badge badge-secondary'>$category</span>
-                                                ";
-                                            }
-                                        ?>
+                                        <p><span style="color:#9788a7;">Category:</span> <?= $book['category']; ?></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </li>
-                <?php
-                    }
-                ?>
-            </ul>
             <?php
-                    $pagination="";
-
-                    $pagination.="<ul class='pagination justify-content-center mt-5' style='margin:20px 0'>";
-            
-                    for ($i=1; $i <= $data['total_page'] ; $i++) { 
-                        if ($i == $data['page']) {
-                            $active = "active";
-                        } else{
-                            $active = "";
-                        }
-                        $pagination.="<li class='page-item $active'><a class='page-link' id='$i' href='" . BASE_URL ."/Catalog/search/" . $i ."'>$i</a></li>";
                     }
-            
-                    $pagination .= "</ul>";
-            
-                    echo $pagination;
+                echo "</ul>";
                 }
                 else {
-                    echo "<h3><span class='badge badge-warning'>No result found</span></h3>";
+                    echo "<h3 class='text-center'><span class='badge badge-warning'>No result found</span></h3>";
                 }
             ?>
+            
         </div>
     </div>
     
