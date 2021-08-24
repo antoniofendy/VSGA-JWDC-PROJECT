@@ -44,7 +44,7 @@
                                             echo "<img src='" . BASE_URL . "/images/defaultuser.jpg' alt='' width='100px' heigth='100px' style='border-width: 2px !important;' class='border border-primary rounded-circle d-block mb-3'>";
                                         }
                                         else {
-                                            echo "<img src='" . BASE_URL . "/images/members/" . $data['picture'] . "' alt='' width='100px' heigth='100px' style='border-width: 2px !important;' class='border border-primary rounded-circle d-block mb-3'>";
+                                            echo "<img src='" . BASE_URL . "/images/members/" . $data['picture'] . "?" . time() . "' alt='' width='100px' heigth='100px' style='border-width: 2px !important;' class='border border-primary rounded-circle d-block mb-3'>";
                                         }
                                     ?>
                                     <input type="file" class="form-control-file" accept="image/jpg, image/png, image/jpeg" name="picture" id="cover">

@@ -50,7 +50,7 @@
                                 echo "<img src='" . BASE_URL . "/images/defaultuser.jpg' alt='' width='80px' heigth='80px' style='border-width: 2px !important;' class='m-2 border border-primary rounded-circle'>";
                             }
                             else {
-                                echo "<img src='" . BASE_URL . "/images/members/" . $member['picture'] . "' alt='' width='80px' heigth='80px' style='border-width: 2px !important;' class='m-2 border border-primary rounded-circle'>";
+                                echo "<img src='" . BASE_URL . "/images/members/" . $member['picture']. "?" . time() ."'alt='' width='80px' heigth='80px' style='border-width: 2px !important;' class='m-2 border border-primary rounded-circle'>";
                             }
                         ?>
                     </td>

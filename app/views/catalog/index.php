@@ -82,7 +82,7 @@
                 ?>
                     <li class="list-group-item">
                         <div class="row book-list">
-                            <div class="col-sm-0 col-md-2 d-flex justify-content-center">
+                            <div class="col-sm-0 col-md-2 d-flex justify-content-center align-items-start">
                                 <img class="img-katalog" src="<?= BASE_URL ?>/images/books/<?= $book['cover'] ?>" alt="" srcset="">
                             </div>
                             <div class="col-sm-12 col-md-10" style="width: 100%;">

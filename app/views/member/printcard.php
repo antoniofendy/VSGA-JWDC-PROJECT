@@ -67,7 +67,7 @@
                         echo "<img src='" . BASE_URL . "/images/defaultuser.jpg' alt='' width='50px' heigth='50px' style='border-width: 2px !important;'>";
                     }
                     else {
-                        echo "<img src='" . BASE_URL . "/images/members/" . $data['picture'] . "' alt='' width='50px' heigth='50px' style='border-width: 2px !important;'>";
+                        echo "<img src='" . BASE_URL . "/images/members/" . $data['picture'] . "?" . time() ."' alt='' width='50px' heigth='50px' style='border-width: 2px !important;'>";
                     }
                 ?>
             </div>
