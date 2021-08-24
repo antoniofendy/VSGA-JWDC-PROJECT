@@ -232,9 +232,19 @@ class Book extends Controller {
 
     public function delete($isbn) {
 
+        // Get location image name
+        $book = $this->model('BookModel')->find($isbn);
+
+        $cover_name = $book['cover'];
+
+        $cover_dir = "../sispus/images/books/";
+
         $result = $this->model('BookModel')->delete($isbn);
+
         if($result) {
             
+            if (file_exists($cover_dir . $cover_name)) unlink($cover_dir . $cover_name);
+
             Flasher::setFlash("Successfuly delete book", 'success');
             header('location: ' . BASE_URL . '/Book');
         }

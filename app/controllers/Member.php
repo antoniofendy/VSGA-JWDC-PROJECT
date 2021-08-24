@@ -237,12 +237,20 @@ class Member extends Controller {
     }
 
     public function delete($id) {
-    
-        $result = $this->model('MemberModel')->delete($id);
+        
+        // Get location image name
+        $member = $this->model('MemberModel')->find($id);
+
+        $picture_name = $member['picture'];
+        $picture_dir = "../sispus/images/members/";
+
         $result2 = $this->model('UserModel')->delete($id);
+        $result = $this->model('MemberModel')->delete($id);
 
         if($result && $result2) {
             
+            if (file_exists($picture_dir . $picture_name)) unlink($picture_dir . $picture_name);
+
             Flasher::setFlash("Successfuly delete member", 'success');
             header('location: ' . BASE_URL . '/Member');
         }
