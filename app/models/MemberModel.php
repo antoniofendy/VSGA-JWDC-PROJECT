@@ -23,6 +23,19 @@ class MemberModel {
 
 	}
 
+	public function getTransactionable() {
+		
+		$this->db->query("SELECT id, name FROM " . $this->table . " WHERE status = :status");
+		$this->db->bind('status', 'not_borrowing');
+		$this->db->execute();
+
+		$result = $this->db->resultSet();
+
+		$this->db->close();
+		return $result;
+
+	}
+
 	public function find($id) {
 
 		$this->db->query("SELECT * FROM " . $this->table . " WHERE id = :id");

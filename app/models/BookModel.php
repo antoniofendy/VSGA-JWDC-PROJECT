@@ -21,6 +21,31 @@ class BookModel {
 
 	}
 
+	public function getCatalog() {
+
+		$limit = 6;
+		
+		$this->db->query("SELECT * FROM " . $this->table . " LIMIT " . $limit);
+		$this->db->execute();
+		$result = $this->db->resultSet();
+		$this->db->close();
+		return $result;
+
+	}
+
+	public function getTransactionable() {
+		
+		$this->db->query("SELECT isbn, title FROM " . $this->table . " WHERE status = :status");
+		$this->db->bind('status', 'available');
+		$this->db->execute();
+
+		$result = $this->db->resultSet();
+
+		$this->db->close();
+		return $result;
+
+	}
+
 	public function find($isbn) {
 
 		$this->db->query("SELECT * FROM " . $this->table . " WHERE isbn = :isbn");

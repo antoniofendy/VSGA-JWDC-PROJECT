@@ -10,7 +10,7 @@ class Catalog extends UserController {
 
         $data['title'] = 'Catalog';
 
-        $result = $this->model('BookModel')->search('', '1');
+        $result = $this->model('BookModel')->getCatalog();
 
         $data['book'] = $result;
 
