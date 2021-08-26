@@ -69,7 +69,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Transaction:</h6>
                 <a class="collapse-item" href="<?= BASE_URL ?>/Transaction"> Borrow </a>
-                <a class="collapse-item" href="<?= BASE_URL ?>/Transacion/extend_return"> Extend & Return </a>
+                <a class="collapse-item" href="<?= BASE_URL ?>/Transaction/extend_return"> Extend & Return </a>
             </div>
         </div>
     </li>

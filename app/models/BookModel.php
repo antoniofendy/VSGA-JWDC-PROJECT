@@ -175,6 +175,24 @@ class BookModel {
 
     }
 
+	public function updateStatus($isbn, $status) {
+
+		$updated_at = date('Y-m-d H:i:s');
+		
+		$this->db->query("UPDATE " . $this->table . " SET status = :status, updated_at = :updated_at WHERE isbn = :isbn");
+		$this->db->bind('status', $status);
+		$this->db->bind('updated_at', $updated_at);
+		$this->db->bind('isbn', $isbn);
+
+		$this->db->execute();
+
+		$result = $this->db->rowCount();
+
+		$this->db->close();
+		return $result;
+
+	}
+
     public function delete($isbn) {
 
 		try {

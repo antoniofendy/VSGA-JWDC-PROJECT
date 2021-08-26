@@ -103,6 +103,24 @@ class MemberModel {
 
     }
 
+	public function updateStatus($id, $status) {
+
+		$updated_at = date('Y-m-d H:i:s');
+		
+		$this->db->query("UPDATE " . $this->table . " SET status = :status, updated_at = :updated_at WHERE id = :id");
+		$this->db->bind('status', $status);
+		$this->db->bind('updated_at', $updated_at);
+		$this->db->bind('id', $id);
+
+		$this->db->execute();
+
+		$result = $this->db->rowCount();
+
+		$this->db->close();
+		return $result;
+
+	}
+
     public function delete($id) {
 
 		try {

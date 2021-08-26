@@ -36,7 +36,7 @@ class Transaction extends Controller {
     public function store() {
         
         // Check all non-filetype input
-        $required = array('id', 'members_id', 'name', 'username');
+        $required = array('trans_id', 'member', 'book', 'borrow', 'due');
 
 		$error = false;
 
@@ -46,49 +46,115 @@ class Transaction extends Controller {
 
 		if ($error) {
 			Flasher::setFlash('Please fill all of the input form', 'danger');
-			header('location: ' . BASE_URL . '/User/edit/' . $_POST['id']);
+			header('location: ' . BASE_URL . '/Transaction/create/');
 			die();
 		}
+
+        $result = $this->model('TransactionModel')->save($_POST);
+
+        // If success, then update member and book status
+        if($result) {
+            
+            try {
+                $update_member = $this->model('MemberModel')->updateStatus($_POST['member'], "is_borrowing");
+                $update_book = $this->model('BookModel')->updateStatus($_POST['book'], "unavailable");
+            }
+            catch (Exception $err) {
+                Flasher::setFlash('Error occured when add new transaction', 'danger');
+                header('location: ' . BASE_URL . '/Transaction/create/');
+                die();
+            }
+
+            Flasher::setFlash("Successfuly add new transaction", 'success');
+            header('location: ' . BASE_URL . '/Transaction');
+
+        }
         
     }
 
 
-    public function edit($id) {
+    public function extend_return() {
         
-        $data['title'] = 'Transaction | Edit';
+        $data['title'] = 'Transaction | Extend and Return';
+
+        $data['transaction'] = $this->model('TransactionModel')->getReturnAble();
 
         $this->view('template/dashboard-header', $data);
-		$this->view('transaction/edit', $data);
+		$this->view('transaction/extend_return', $data);
 		$this->view('template/dashboard-footer');
 	
     }
 
-    public function update() {
+    public function extend_trans($trans_id) {
         
-        // Check all non-filetype input
-        $required = array('id', 'members_id', 'name', 'username');
+        $data = $this->model('TransactionModel')->find($trans_id);
 
-		$error = false;
+        $due_date = strtotime($data['due_date']);
+        $data['due_date'] = date('Y-m-d', strtotime("+7 day", $due_date));
 
-		foreach ($required as $field) {
-			if (empty($_POST[$field])) $error = true;
-		}
+        $result = $this->model('TransactionModel')->extend_transaction($data);
 
-		if ($error) {
-			Flasher::setFlash('Please fill all of the input form', 'danger');
-			header('location: ' . BASE_URL . '/User/edit/' . $_POST['id']);
-			die();
-		}
-        
+        if($result) {
+            Flasher::setFlash("Successfuly processing an extend transaction", 'success');
+            header('location: ' . BASE_URL . '/Transaction/extend_return');
+        }
+        else {
+            Flasher::setFlash("Error occured when processing an extend transaction", 'danger');
+            header('location: ' . BASE_URL . '/Transaction/extend_return');
+        }
+	
     }
 
-    public function delete($id) {
+    public function return_trans($trans_id) {
         
-        $data['title'] = 'Transaction';
+        $data = $this->model('TransactionModel')->find($trans_id);
+        $data['return_date'] = date('Y-m-d');
+        
+        $result = $this->model('TransactionModel')->return_transaction($data);
 
-        $this->view('template/dashboard-header', $data);
-		$this->view('transaction/index');
-		$this->view('template/dashboard-footer');
+        if($result) {
+            try {
+                $update_member = $this->model('MemberModel')->updateStatus($data['members_id'], "not_borrowing");
+                $update_book = $this->model('BookModel')->updateStatus($data['books_isbn'], "available");
+            }
+            catch (Exception $err) {
+                Flasher::setFlash('Error occured when processing a return transaction', 'danger');
+                header('location: ' . BASE_URL . '/Transaction/extend_return');
+                die();
+            }
+            Flasher::setFlash("Successfuly processing a return transaction", 'success');
+            header('location: ' . BASE_URL . '/Transaction/extend_return');
+        }
+        else {
+            Flasher::setFlash("Error occured when processing a return transaction", 'danger');
+            header('location: ' . BASE_URL . '/Transaction/extend_return');
+        }
+
+    }
+
+    public function delete($trans_id) {
+        
+        $find_data = $this->model('TransactionModel')->find($trans_id);
+
+        $result = $this->model('TransactionModel')->delete($trans_id);
+
+        // If success, then update member and book status
+        if($result) {
+            
+            try {
+                $update_member = $this->model('MemberModel')->updateStatus($find_data['members_id'], "not_borrowing");
+                $update_book = $this->model('BookModel')->updateStatus($find_data['books_isbn'], "available");
+            }
+            catch (Exception $err) {
+                Flasher::setFlash('Error occured when delete a transaction', 'danger');
+                header('location: ' . BASE_URL . '/Transaction');
+                die();
+            }
+
+            Flasher::setFlash("Successfuly delete a transaction", 'success');
+            header('location: ' . BASE_URL . '/Transaction');
+
+        }
 	
     }
 
