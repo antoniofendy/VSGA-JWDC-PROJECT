@@ -84,7 +84,7 @@
 
     <!-- Nav Item - Book -->
     <li class="nav-item <?php echo $current_page == 'report' ? 'active' : '' ?>">
-        <a href="<?= BASE_URL ?>" class="nav-link">
+        <a href="<?= BASE_URL ?>/Transaction/print_report" class="nav-link">
             <i class="fas fa-file-alt"></i>
             <span>Transaction Report</span>
         </a>

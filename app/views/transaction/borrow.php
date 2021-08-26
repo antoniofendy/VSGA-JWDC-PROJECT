@@ -67,15 +67,15 @@
                                             <td class="align-middle"><?= $transaction['due_date'] ?></td>
                                             <td class="text-center align-middle">
                                                 <?php
-                                                    if(date('Y-m-d') > $transaction['due_date']) {
-                                                        echo "Over time";
+                                                    if($transaction['return_date'] != "0000-00-00") {
+                                                        echo "Returned";
                                                     }
                                                     else {
-                                                        if($transaction['return_date'] == "0000-00-00") {
-                                                            echo "Borrowed";
+                                                        if(date('Y-m-d') > $transaction['due_date']) {
+                                                            echo "Over time";
                                                         }
                                                         else {
-                                                            echo "Returned";
+                                                            echo "Borrowed";
                                                         }
                                                     }
                                                 ?>

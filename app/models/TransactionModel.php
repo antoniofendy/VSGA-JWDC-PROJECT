@@ -56,6 +56,18 @@ class TransactionModel {
 
 	}
 
+	public function findJoinedTable($trans_id) {
+
+		$this->db->query("SELECT t.trans_id, t.members_id, m.name, t.books_isbn, b.title, t.borrow_date, t.due_date, t.return_date FROM " . $this->table . " t INNER JOIN members m ON t.members_id = m.id INNER JOIN books b ON t.books_isbn = b.isbn WHERE t.trans_id = :trans_id");
+		$this->db->bind('trans_id', $trans_id);
+		$this->db->execute();
+		$result = $this->db->single();
+
+		$this->db->close();
+		return $result;
+
+	}
+
     public function save($data) {
 
 		$created_at = $updated_at = date('Y-m-d H:i:s');

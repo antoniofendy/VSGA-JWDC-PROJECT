@@ -97,6 +97,7 @@ function validasiForm() {
         return false;
     }
 
+    // CHECK borrow date
     let borrow_input = document.getElementById(borrow.id);
     if (required(borrow_input.value) === false) {
         // borrow error message not filled
@@ -104,6 +105,7 @@ function validasiForm() {
         return false;
     }
 
+    // Check due date
     let due_input = document.getElementById(due.id);
     if (required(due_input.value) === false) {
         // due error message not filled

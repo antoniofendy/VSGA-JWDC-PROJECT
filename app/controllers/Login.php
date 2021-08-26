@@ -46,6 +46,7 @@ class Login extends Controller {
 		if ($result) {
 			$_SESSION['userid'] = $result['id'];
 			$_SESSION['username'] = $result['username'];
+			$_SESSION['admin_name'] = $result['name'];
 			$_SESSION['start'] = time();
 		
 			if ($remember) {

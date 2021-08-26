@@ -158,13 +158,28 @@ class Transaction extends Controller {
 	
     }
 
+    public function print($trans_id) {
+
+        $data = $this->model('TransactionModel')->findJoinedTable($trans_id);
+
+		$this->view('transaction/print_note', $data);
+
+    }
+
+    public function print_report() {
+
+        $data = $this->model('TransactionModel')->get();
+
+		$this->view('transaction/print_report', $data);
+
+    }
+
     private function getLastTransactionId() {
 
             $result = $this->model('TransactionModel')->getAllTransaction();
             $stored_id = [];
     
             foreach ($result as $key => $user) {
-                // TR00000001
                 array_push($stored_id, substr($user['trans_id'], -8, 8));
             }
     
